@@ -1,0 +1,58 @@
+{
+    "appName": "Diario Pressorio",
+    "addValue": "Aggiungi Misurazione",
+    "updateValue": "Aggiorna Misurazione",
+    "deleteValue": "Elimina Misurazione",
+    "historyValues": "Storico Misurazioni",
+    "settings": "Impostazioni",
+
+    "filter": "FILTRA PER",
+    "week": "SETTIMANA",
+    "month": "MESE",
+    "year": "ANNO",
+    "all": "SEMPRE",
+
+    "note": "Note",
+
+    "informationDateTime": "Le presenti misurazioni sono state stampate il: ",
+
+    "exportMeasurements": "Esporta Misurazioni",
+    "importMeasurements": "Importa Misurazioni",
+
+    "measurements": "Misurazioni",
+    "dateMeasurement": "Data Misurazione",
+
+    "requestedField": "Campo Richiesto",
+    "confirm": "CONFERMA",
+    "success": "Operazione Completata",
+    "insertConfirmation": "Il dato richiesto è stato inserito correttamente",
+    "updateConfirmation": "Il dato richiesto è stato aggiornato correttamente",
+
+    "avgValues": "Media dei Valori Rilevati",
+    "graphVariation": "Grafico della Variazione dei Valori",
+    "graphOccurrences": "Grafico delle Occorrenze delle misurazioni",
+
+    "noValuesDetected": "Nessuna misurazione rilevata",
+    "noValuesDetectedDetail": "Per aggiungerne una misurazione fare click su Aggiungi",
+
+    "lblSYS": "SYS",
+    "lblDIA": "DIA",
+    "lblBPM": "BPM",
+    
+    "home": "Home",
+    "add": "Aggiungi",
+    "history": "Cronologia",
+
+    "selectDateTime": "Seleziona Data e Ora",
+
+    "hypotension": "Ipotensione",
+    "regular": "Regolare",
+    "elevated": "Elevata",
+    "hypertensionstage1": "Ipertensione di primo stadio",
+    "hypertensionstage2": "Ipertensione di secondo stadio",
+    "hypertensivecrisis": "Crisi Ipertensiva",
+
+    "sys": "Sistolica",
+    "dia": "Diastolica",
+    "bpm": "Pulsazione"
+}
