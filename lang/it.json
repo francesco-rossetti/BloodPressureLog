@@ -54,5 +54,13 @@
 
     "sys": "Sistolica",
     "dia": "Diastolica",
-    "bpm": "Pulsazione"
+    "bpm": "Pulsazione",
+
+    "instruction": "Come funziona l'app",
+
+    "onBoarding1Detail": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nisl odio, fermentum in luctus vitae, faucibus a est. Maecenas ut vulputate mi. Nulla ullamcorper dui in velit cursus, eget aliquam risus iaculis. In consequat eget lacus nec dictum. Praesent luctus vitae est ac porta. Donec vel ultrices diam. Cras placerat ante odio, a convallis quam accumsan eu. Nunc venenatis dolor arcu, ac blandit magna ullamcorper sit amet. Pellentesque rhoncus maximus nunc id facilisis. Integer sit amet eros id elit efficitur viverra a in ipsum. Integer tincidunt scelerisque ipsum, sed auctor turpis mattis ut. Donec nec ex non dolor ornare condimentum a eget purus. Aliquam blandit gravida massa, ac auctor velit sollicitudin eu. Nam rhoncus erat vitae massa pulvinar pulvinar",
+    "onBoarding2": "Seconda Parte",
+    "onBoarding2Detail": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nisl odio, fermentum in luctus vitae, faucibus a est. Maecenas ut vulputate mi. Nulla ullamcorper dui in velit cursus, eget aliquam risus iaculis. In consequat eget lacus nec dictum. Praesent luctus vitae est ac porta. Donec vel ultrices diam. Cras placerat ante odio, a convallis quam accumsan eu. Nunc venenatis dolor arcu, ac blandit magna ullamcorper sit amet. Pellentesque rhoncus maximus nunc id facilisis. Integer sit amet eros id elit efficitur viverra a in ipsum. Integer tincidunt scelerisque ipsum, sed auctor turpis mattis ut. Donec nec ex non dolor ornare condimentum a eget purus. Aliquam blandit gravida massa, ac auctor velit sollicitudin eu. Nam rhoncus erat vitae massa pulvinar pulvinar",
+    "onBoarding3": "Terza Parte",
+    "onBoarding3Detail": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nisl odio, fermentum in luctus vitae, faucibus a est. Maecenas ut vulputate mi. Nulla ullamcorper dui in velit cursus, eget aliquam risus iaculis. In consequat eget lacus nec dictum. Praesent luctus vitae est ac porta. Donec vel ultrices diam. Cras placerat ante odio, a convallis quam accumsan eu. Nunc venenatis dolor arcu, ac blandit magna ullamcorper sit amet. Pellentesque rhoncus maximus nunc id facilisis. Integer sit amet eros id elit efficitur viverra a in ipsum. Integer tincidunt scelerisque ipsum, sed auctor turpis mattis ut. Donec nec ex non dolor ornare condimentum a eget purus. Aliquam blandit gravida massa, ac auctor velit sollicitudin eu. Nam rhoncus erat vitae massa pulvinar pulvinar"
 }

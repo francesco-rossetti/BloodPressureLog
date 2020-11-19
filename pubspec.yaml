@@ -19,9 +19,11 @@ dependencies:
   basic_utils: ^2.6.3
   path_provider: ^1.6.24
   intl: ^0.16.1
+  shared_preferences: '>=0.5.12+4 <2.0.0'
 
   #EXPORT/IMPORT
   pdf: ^1.11.2
+  file_picker: ^1.8.0+1
   flutter_share: ^1.0.5
 
   #FIREBASE
@@ -30,6 +32,7 @@ dependencies:
   admob_flutter: ^1.0.1
 
   #UI
+  intro_slider: ^2.3.3
   convex_bottom_bar: ^2.6.0
   fluttertoast: ^7.1.1
   rounded_loading_button: ^1.0.15

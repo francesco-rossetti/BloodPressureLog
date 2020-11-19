@@ -1,8 +1,13 @@
+import 'dart:io';
+
+import 'package:bloodpressurelog/components/onBoarding.dart';
 import 'package:bloodpressurelog/components/pageSample.dart' as components;
+import 'package:bloodpressurelog/constants.dart';
 import 'package:bloodpressurelog/utils/AppLocalization.dart';
 import 'package:bloodpressurelog/utils/JSONProvider.dart';
 import 'package:bloodpressurelog/utils/PDFProvider.dart';
 import 'package:commons/commons.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
 class Settings extends StatefulWidget {
@@ -35,7 +40,7 @@ class _SettingsState extends State<Settings> {
               ))),
       SizedBox(height: 20),
       Padding(
-          padding: EdgeInsets.only(left: 15, right: 15, top: 15),
+          padding: EdgeInsets.only(left: 15, right: 15, top: 0),
           child: SizedBox(
               width: double.infinity,
               height: 40,
@@ -54,7 +59,7 @@ class _SettingsState extends State<Settings> {
                     style: TextStyle(fontSize: 20)),
               ))),
       Padding(
-          padding: EdgeInsets.only(left: 15, right: 15, top: 15),
+          padding: EdgeInsets.only(left: 15, right: 15, top: 5),
           child: SizedBox(
               width: double.infinity,
               height: 40,
@@ -62,10 +67,10 @@ class _SettingsState extends State<Settings> {
                 textColor: Colors.white,
                 color: Colors.blue,
                 onPressed: () async {
-                  var result = [];
+                  File file = await FilePicker.getFile(type: FileType.custom);
 
-                  if (result != null) {
-                    //JSONProvider.importMeasurements(result.files.single.path);
+                  if (file != null) {
+                    JSONProvider.importMeasurements(file.path);
                   } else {
                     // User canceled the picker
                   }
@@ -76,6 +81,24 @@ class _SettingsState extends State<Settings> {
                     style: TextStyle(fontSize: 20)),
               ))),
       SizedBox(height: 20),
+      Padding(
+          padding: EdgeInsets.only(left: 15, right: 15, top: 5),
+          child: SizedBox(
+              width: double.infinity,
+              height: 40,
+              child: RaisedButton(
+                textColor: Colors.white,
+                color: Colors.blue,
+                onPressed: () async {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => IntroScreen(isReplay: true)));
+                },
+                child: new Text(
+                    AppLocalizations.of(context).translate("instruction"),
+                    style: TextStyle(fontSize: 20)),
+              ))),
+      SizedBox(height: 20),
+      kLargeBanner
     ]);
   }
 

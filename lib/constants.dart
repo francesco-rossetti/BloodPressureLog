@@ -8,15 +8,14 @@ const String kInterstitialID = "ca-app-pub-3318650813130043/4533264503";
 AdmobBanner kbanner =
     AdmobBanner(adUnitId: kBannerID, adSize: AdmobBannerSize.BANNER);
 
-const kBackgroundColor = Color(0xFFF1EFF1);
+AdmobBanner kLargeBanner =
+    AdmobBanner(adUnitId: kBannerID, adSize: AdmobBannerSize.MEDIUM_RECTANGLE);
+
 const kPrimaryColor = Color(0xFF1976D2);
 const kSecondaryColor = Color(0xFFFF9800);
-const kTabBarColor = Color(0xFFD6D6D6);
-const kDisactiveTabColor = Color(0xFF686868);
-const kTextColor = Color(0xFF212121);
-const kTextLightColor = Color(0xFF757575);
-const kBlueColor = Color(0xFF40BAD5);
-const kOrangeColor = Color(0xFFFFC206);
+const kOnBoarding1Color = Color(0xfff44336);
+const kOnBoarding2Color = Color(0xff4caf50);
+const kOnBoarding3Color = Color(0xff2196f3);
 
 const kHypotensionColor = Color(0xff03a9f4);
 const kRegularColor = Color(0xff4caf50);

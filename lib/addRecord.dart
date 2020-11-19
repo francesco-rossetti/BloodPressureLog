@@ -110,7 +110,9 @@ class _AddRecordState extends State<AddRecord> {
                             setState(() {
                               dateTimeRecord = date;
                             });
-                          }, currentTime: dateTimeRecord);
+                          },
+                              currentTime: dateTimeRecord,
+                              locale: LocaleType.it);
                         },
                         child: ListTile(
                           leading: Icon(Icons.calendar_today),

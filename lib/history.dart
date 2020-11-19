@@ -20,66 +20,60 @@ class _HistoryState extends State<History> {
   createBody(BuildContext context) {
     return Column(children: [
       kbanner,
-      Padding(
-          padding: EdgeInsets.only(top: 5.0, left: 5.0, right: 5.0),
-          child: Card(
-              child: Column(children: [
-            SizedBox(height: 10),
-            Text(AppLocalizations.of(context).translate("filter"),
-                style: TextStyle(fontWeight: FontWeight.bold)),
-            Container(
-                height: 50,
-                child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    shrinkWrap: true,
-                    children: [
-                      FlatButton(
-                        child: Text(
-                            AppLocalizations.of(context).translate("week"),
-                            style: TextStyle(fontWeight: FontWeight.normal)),
-                        textColor: Colors.black,
-                        onPressed: () {
-                          setState(() {
-                            action = 0;
-                          });
-                        },
-                      ),
-                      FlatButton(
-                        child: Text(
-                            AppLocalizations.of(context).translate("month"),
-                            style: TextStyle(fontWeight: FontWeight.normal)),
-                        textColor: Colors.black,
-                        onPressed: () {
-                          setState(() {
-                            action = 1;
-                          });
-                        },
-                      ),
-                      FlatButton(
-                        child: Text(
-                            AppLocalizations.of(context).translate("year"),
-                            style: TextStyle(fontWeight: FontWeight.normal)),
-                        textColor: Colors.black,
-                        onPressed: () {
-                          setState(() {
-                            action = 2;
-                          });
-                        },
-                      ),
-                      FlatButton(
-                        child: Text(
-                            AppLocalizations.of(context).translate("all"),
-                            style: TextStyle(fontWeight: FontWeight.normal)),
-                        textColor: Colors.black,
-                        onPressed: () {
-                          setState(() {
-                            action = 3;
-                          });
-                        },
-                      ),
-                    ])),
-            SizedBox(height: 5),
-          ]))),
+      Card(
+          child: Column(children: [
+        SizedBox(height: 10),
+        Text(AppLocalizations.of(context).translate("filter"),
+            style: TextStyle(fontWeight: FontWeight.bold)),
+        Container(
+            height: 50,
+            child: ListView(
+                scrollDirection: Axis.horizontal,
+                shrinkWrap: true,
+                children: [
+                  FlatButton(
+                    child: Text(AppLocalizations.of(context).translate("week"),
+                        style: TextStyle(fontWeight: FontWeight.normal)),
+                    textColor: Colors.black,
+                    onPressed: () {
+                      setState(() {
+                        action = 0;
+                      });
+                    },
+                  ),
+                  FlatButton(
+                    child: Text(AppLocalizations.of(context).translate("month"),
+                        style: TextStyle(fontWeight: FontWeight.normal)),
+                    textColor: Colors.black,
+                    onPressed: () {
+                      setState(() {
+                        action = 1;
+                      });
+                    },
+                  ),
+                  FlatButton(
+                    child: Text(AppLocalizations.of(context).translate("year"),
+                        style: TextStyle(fontWeight: FontWeight.normal)),
+                    textColor: Colors.black,
+                    onPressed: () {
+                      setState(() {
+                        action = 2;
+                      });
+                    },
+                  ),
+                  FlatButton(
+                    child: Text(AppLocalizations.of(context).translate("all"),
+                        style: TextStyle(fontWeight: FontWeight.normal)),
+                    textColor: Colors.black,
+                    onPressed: () {
+                      setState(() {
+                        action = 3;
+                      });
+                    },
+                  ),
+                ])),
+        SizedBox(height: 5),
+      ])),
       Expanded(
           child: FutureBuilder(
               future: MeasurementService().readFilter(action),
@@ -87,6 +81,7 @@ class _HistoryState extends State<History> {
                 if (!snapshot.hasData) return Container();
 
                 return ListView.builder(
+                    padding: EdgeInsets.only(left: 5.0, right: 5.0),
                     itemCount: snapshot.data.length,
                     itemBuilder: (context, index) {
                       var level = calculateLevel(

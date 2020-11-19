@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:admob_flutter/admob_flutter.dart';
+import 'package:bloodpressurelog/components/onBoarding.dart';
 import 'package:bloodpressurelog/constants.dart';
 import 'package:bloodpressurelog/home.dart';
 import 'package:bloodpressurelog/utils/AppLocalization.dart';
@@ -9,9 +10,25 @@ import 'package:firebase_analytics/observer.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+Widget home = IntroScreen(isReplay: false);
+
+Future checkFirstSeen() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  bool _seen = (prefs.getBool('BloodPressureLog') ?? false);
+
+  if (_seen) {
+    home = HomePage();
+  } else {
+    await prefs.setBool('BloodPressureLog', true);
+  }
+}
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  await checkFirstSeen();
 
   Firebase.initializeApp();
   Admob.initialize();
@@ -55,7 +72,7 @@ class MyApp extends StatelessWidget {
       ],
       localeResolutionCallback: localeCallback,
       navigatorObservers: <NavigatorObserver>[observer],
-      home: HomePage(),
+      home: home,
     );
   }
 }
