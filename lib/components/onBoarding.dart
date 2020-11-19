@@ -37,7 +37,7 @@ class _IntroScreenState extends State<IntroScreen> {
         title: AppLocalizations.of(context).translate("appName"),
         description:
             AppLocalizations.of(context).translate("onBoarding1Detail"),
-        pathImage: "assets/images/onboard1.png",
+        pathImage: "assets/images/icon.png",
         backgroundColor: kOnBoarding1Color,
       ),
     );
@@ -46,7 +46,7 @@ class _IntroScreenState extends State<IntroScreen> {
         title: AppLocalizations.of(context).translate("onBoarding2"),
         description:
             AppLocalizations.of(context).translate("onBoarding2Detail"),
-        pathImage: "assets/images/onboard2.png",
+        pathImage: "assets/images/onboard1.png",
         backgroundColor: kOnBoarding2Color,
       ),
     );
