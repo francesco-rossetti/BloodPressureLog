@@ -5,7 +5,6 @@ import 'package:bloodpressurelog/components/pageSample.dart' as components;
 import 'package:bloodpressurelog/constants.dart';
 import 'package:bloodpressurelog/utils/AppLocalization.dart';
 import 'package:bloodpressurelog/utils/JSONProvider.dart';
-import 'package:bloodpressurelog/utils/PDFProvider.dart';
 import 'package:commons/commons.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -18,26 +17,6 @@ class Settings extends StatefulWidget {
 class _SettingsState extends State<Settings> {
   createBody(BuildContext context) {
     return ListView(children: [
-      Padding(
-          padding: EdgeInsets.only(left: 15, right: 15, top: 15),
-          child: SizedBox(
-              width: double.infinity,
-              height: 40,
-              child: RaisedButton(
-                textColor: Colors.white,
-                color: Colors.blue,
-                onPressed: () async {
-                  var path = await PDFProvider.pdfAziende(context);
-                  Share.shareFiles([path],
-                      subject: AppLocalizations.of(context)
-                          .translate("exportMeasurements"));
-                },
-                child: new Text(
-                    AppLocalizations.of(context)
-                            .translate("exportMeasurements") +
-                        " PDF",
-                    style: TextStyle(fontSize: 20)),
-              ))),
       SizedBox(height: 20),
       Padding(
           padding: EdgeInsets.only(left: 15, right: 15, top: 0),
@@ -67,12 +46,10 @@ class _SettingsState extends State<Settings> {
                 textColor: Colors.white,
                 color: Colors.blue,
                 onPressed: () async {
-                  File file = await FilePicker.getFile(type: FileType.custom);
+                  File file = await FilePicker.getFile(type: FileType.any);
 
                   if (file != null) {
                     JSONProvider.importMeasurements(file.path);
-                  } else {
-                    // User canceled the picker
                   }
                 },
                 child: new Text(
@@ -95,6 +72,37 @@ class _SettingsState extends State<Settings> {
                 },
                 child: new Text(
                     AppLocalizations.of(context).translate("instruction"),
+                    style: TextStyle(fontSize: 20)),
+              ))),
+      Padding(
+          padding: EdgeInsets.only(left: 15, right: 15, top: 5),
+          child: SizedBox(
+              width: double.infinity,
+              height: 40,
+              child: RaisedButton(
+                textColor: Colors.white,
+                color: Colors.blue,
+                onPressed: () async {
+                  if (await inAppReview.isAvailable()) {
+                    inAppReview.requestReview();
+                  }
+                },
+                child: new Text(
+                    AppLocalizations.of(context).translate("rateApp"),
+                    style: TextStyle(fontSize: 20)),
+              ))),
+      Padding(
+          padding: EdgeInsets.only(left: 15, right: 15, top: 15),
+          child: SizedBox(
+              width: double.infinity,
+              height: 40,
+              child: RaisedButton(
+                textColor: Colors.white,
+                color: Colors.blue,
+                onPressed: () async {
+                  if (await canLaunch(kDevURL)) await launch(kDevURL);
+                },
+                child: new Text(AppLocalizations.of(context).translate("myApp"),
                     style: TextStyle(fontSize: 20)),
               ))),
       SizedBox(height: 20),

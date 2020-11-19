@@ -30,6 +30,8 @@ dependencies:
   firebase_core: ^0.5.2
   firebase_analytics: ^6.2.0
   admob_flutter: ^1.0.1
+  in_app_review: ^1.0.3
+  url_launcher: ^5.7.10
 
   #UI
   intro_slider: ^2.3.3

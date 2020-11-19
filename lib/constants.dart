@@ -1,15 +1,20 @@
 import 'package:admob_flutter/admob_flutter.dart';
 import 'package:bloodpressurelog/utils/database/models/measurement.dart';
 import 'package:flutter/material.dart';
+import 'package:in_app_review/in_app_review.dart';
 
 const String kBannerID = "ca-app-pub-3318650813130043/5546963278";
 const String kInterstitialID = "ca-app-pub-3318650813130043/4533264503";
+const String kDevURL =
+    "https://play.google.com/store/apps/dev?id=6543884814941375849";
 
 AdmobBanner kbanner =
     AdmobBanner(adUnitId: kBannerID, adSize: AdmobBannerSize.BANNER);
 
 AdmobBanner kLargeBanner =
     AdmobBanner(adUnitId: kBannerID, adSize: AdmobBannerSize.MEDIUM_RECTANGLE);
+
+final InAppReview inAppReview = InAppReview.instance;
 
 const kPrimaryColor = Color(0xFF1976D2);
 const kSecondaryColor = Color(0xFFFF9800);

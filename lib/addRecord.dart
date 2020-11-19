@@ -1,3 +1,4 @@
+import 'package:admob_flutter/admob_flutter.dart';
 import 'package:bloodpressurelog/components/pressureLevelBar.dart';
 import 'package:bloodpressurelog/utils/AppLocalization.dart';
 import 'package:bloodpressurelog/utils/database/controllers/measurementService.dart';
@@ -18,6 +19,7 @@ class AddRecord extends StatefulWidget {
 }
 
 class _AddRecordState extends State<AddRecord> {
+  AdmobInterstitial interstitialAd;
   final TextEditingController noteController = new TextEditingController();
   final RoundedLoadingButtonController _btnController =
       new RoundedLoadingButtonController();
@@ -28,6 +30,19 @@ class _AddRecordState extends State<AddRecord> {
   void initState() {
     super.initState();
 
+    interstitialAd = AdmobInterstitial(
+      adUnitId: kInterstitialID,
+      listener: (AdmobAdEvent event, Map<String, dynamic> args) {
+        if (event == AdmobAdEvent.closed) {
+          interstitialAd.load();
+          setState(() {
+            _btnController.reset();
+          });
+        }
+      },
+    );
+
+    interstitialAd.load();
     dateTimeRecord = DateTime.now();
   }
 
@@ -165,10 +180,32 @@ class _AddRecordState extends State<AddRecord> {
                       title: "",
                       neutralText:
                           AppLocalizations.of(context).translate("confirm"),
-                      neutralAction: () {
-                        setState(() {
-                          _btnController.reset();
-                        });
+                      neutralAction: () async {
+                        if (await interstitialAd.isLoaded) {
+                          interstitialAd.show();
+                        } else {
+                          setState(() {
+                            _btnController.reset();
+                          });
+                        }
+                      },
+                      positiveAction: () async {
+                        if (await interstitialAd.isLoaded) {
+                          interstitialAd.show();
+                        } else {
+                          setState(() {
+                            _btnController.reset();
+                          });
+                        }
+                      },
+                      negativeAction: () async {
+                        if (await interstitialAd.isLoaded) {
+                          interstitialAd.show();
+                        } else {
+                          setState(() {
+                            _btnController.reset();
+                          });
+                        }
                       },
                     );
                     await Future.delayed(const Duration(seconds: 3));
