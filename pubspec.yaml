@@ -49,6 +49,18 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   random_string: ^2.1.0
+  flutter_launcher_icons: ^0.8.1
+  flutter_native_splash: ^0.1.9
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/icon.png"
+
+flutter_native_splash:
+  image: "assets/images/icon.png"
+  color: "335c67"
+  android_disable_fullscreen: true
 
 flutter:
   uses-material-design: true
