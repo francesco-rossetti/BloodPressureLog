@@ -60,9 +60,12 @@
     "rateApp": "Ti piace l'app? Valutaci 5 stelle",
     "myApp": "Le nostre app",
 
-    "onBoarding1Detail": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nisl odio, fermentum in luctus vitae, faucibus a est. Maecenas ut vulputate mi. Nulla ullamcorper dui in velit cursus, eget aliquam risus iaculis. In consequat eget lacus nec dictum. Praesent luctus vitae est ac porta. Donec vel ultrices diam. Cras placerat ante odio, a convallis quam accumsan eu. Nunc venenatis dolor arcu, ac blandit magna ullamcorper sit amet. Pellentesque rhoncus maximus nunc id facilisis. Integer sit amet eros id elit efficitur viverra a in ipsum. Integer tincidunt scelerisque ipsum, sed auctor turpis mattis ut. Donec nec ex non dolor ornare condimentum a eget purus. Aliquam blandit gravida massa, ac auctor velit sollicitudin eu. Nam rhoncus erat vitae massa pulvinar pulvinar",
-    "onBoarding2": "Seconda Parte",
-    "onBoarding2Detail": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nisl odio, fermentum in luctus vitae, faucibus a est. Maecenas ut vulputate mi. Nulla ullamcorper dui in velit cursus, eget aliquam risus iaculis. In consequat eget lacus nec dictum. Praesent luctus vitae est ac porta. Donec vel ultrices diam. Cras placerat ante odio, a convallis quam accumsan eu. Nunc venenatis dolor arcu, ac blandit magna ullamcorper sit amet. Pellentesque rhoncus maximus nunc id facilisis. Integer sit amet eros id elit efficitur viverra a in ipsum. Integer tincidunt scelerisque ipsum, sed auctor turpis mattis ut. Donec nec ex non dolor ornare condimentum a eget purus. Aliquam blandit gravida massa, ac auctor velit sollicitudin eu. Nam rhoncus erat vitae massa pulvinar pulvinar",
-    "onBoarding3": "Terza Parte",
-    "onBoarding3Detail": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nisl odio, fermentum in luctus vitae, faucibus a est. Maecenas ut vulputate mi. Nulla ullamcorper dui in velit cursus, eget aliquam risus iaculis. In consequat eget lacus nec dictum. Praesent luctus vitae est ac porta. Donec vel ultrices diam. Cras placerat ante odio, a convallis quam accumsan eu. Nunc venenatis dolor arcu, ac blandit magna ullamcorper sit amet. Pellentesque rhoncus maximus nunc id facilisis. Integer sit amet eros id elit efficitur viverra a in ipsum. Integer tincidunt scelerisque ipsum, sed auctor turpis mattis ut. Donec nec ex non dolor ornare condimentum a eget purus. Aliquam blandit gravida massa, ac auctor velit sollicitudin eu. Nam rhoncus erat vitae massa pulvinar pulvinar"
+    "createdBy": "Creato Da: ",
+    "version": "Versione ",
+    "privacypolicy": "Informativa Privacy",
+    "termsofservice": "Termini di servizio",
+
+    "onBoarding1Detail": "Ecco per té l'app che ti consente di monitorare con facilità i dati della pressione del sangue.",
+    "onBoarding2Detail": "Aggiungi i dati richiesti. \n\nPensermo noi a generare i grafici riassuntivi che ti semplificheranno la vita",
+    "onBoarding3Detail": "I tuoi dati saranno sempre sul tuo dispositivo e da noi non potranno essere mai divulgati. \n\nSono comunque a disposizione pulsanti per generare e condividere i dati solamente con chi vorrai."
 }

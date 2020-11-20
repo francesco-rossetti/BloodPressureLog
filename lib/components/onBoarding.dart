@@ -43,7 +43,7 @@ class _IntroScreenState extends State<IntroScreen> {
     );
     slides.add(
       new Slide(
-        title: AppLocalizations.of(context).translate("onBoarding2"),
+        title: AppLocalizations.of(context).translate("appName"),
         description:
             AppLocalizations.of(context).translate("onBoarding2Detail"),
         pathImage: "assets/images/onboard1.png",
@@ -52,7 +52,7 @@ class _IntroScreenState extends State<IntroScreen> {
     );
     slides.add(
       new Slide(
-        title: AppLocalizations.of(context).translate("onBoarding3"),
+        title: AppLocalizations.of(context).translate("appName"),
         description:
             AppLocalizations.of(context).translate("onBoarding3Detail"),
         pathImage: "assets/images/bloodpressure.png",

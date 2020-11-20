@@ -5,6 +5,7 @@ import 'package:bloodpressurelog/components/emptyList.dart';
 import 'package:bloodpressurelog/components/lineAreaGraph.dart';
 import 'package:bloodpressurelog/components/sysCircularPercentIndicator.dart';
 import 'package:bloodpressurelog/constants.dart';
+import 'package:bloodpressurelog/info.dart';
 import 'package:bloodpressurelog/utils/AppLocalization.dart';
 import 'package:bloodpressurelog/utils/database/controllers/measurementService.dart';
 import 'package:bloodpressurelog/utils/database/models/measurement.dart';
@@ -250,9 +251,6 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return components.Page(
-      name: "appName",
-      showBottomBar: true,
-      body: generateBody(context),
-    );
+        name: "appName", showBottomBar: true, body: generateBody(context));
   }
 }

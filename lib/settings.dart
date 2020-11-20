@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:bloodpressurelog/components/onBoarding.dart';
 import 'package:bloodpressurelog/components/pageSample.dart' as components;
 import 'package:bloodpressurelog/constants.dart';
+import 'package:bloodpressurelog/info.dart';
 import 'package:bloodpressurelog/utils/AppLocalization.dart';
 import 'package:bloodpressurelog/utils/JSONProvider.dart';
 import 'package:commons/commons.dart';
@@ -113,6 +114,17 @@ class _SettingsState extends State<Settings> {
   @override
   Widget build(BuildContext context) {
     return components.Page(
-        name: "settings", showBottomBar: true, body: createBody(context));
+        name: "settings",
+        showBottomBar: true,
+        body: createBody(context),
+        appBarActions: [
+          IconButton(
+            icon: Icon(Icons.info_outline, color: Colors.white),
+            onPressed: () async {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => InfoScreen()));
+            },
+          )
+        ]);
   }
 }
