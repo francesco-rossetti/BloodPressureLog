@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:admob_flutter/admob_flutter.dart';
 import 'package:bloodpressurelog/components/onBoarding.dart';
-import 'package:bloodpressurelog/constants.dart';
 import 'package:bloodpressurelog/home.dart';
 import 'package:bloodpressurelog/utils/AppLocalization.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
@@ -58,8 +57,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Blood Pressure Diary',
       theme: ThemeData(
-        primaryColor: kPrimaryColor,
-        accentColor: kSecondaryColor,
+        brightness: Brightness.light,
+        fontFamily: "Rubik",
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      darkTheme: ThemeData(
+        brightness: Brightness.dark,
         fontFamily: "Rubik",
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),

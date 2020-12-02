@@ -5,7 +5,6 @@ import 'package:bloodpressurelog/components/emptyList.dart';
 import 'package:bloodpressurelog/components/lineAreaGraph.dart';
 import 'package:bloodpressurelog/components/sysCircularPercentIndicator.dart';
 import 'package:bloodpressurelog/constants.dart';
-import 'package:bloodpressurelog/info.dart';
 import 'package:bloodpressurelog/utils/AppLocalization.dart';
 import 'package:bloodpressurelog/utils/database/controllers/measurementService.dart';
 import 'package:bloodpressurelog/utils/database/models/measurement.dart';
@@ -54,7 +53,6 @@ class _HomePageState extends State<HomePage> {
                                       .translate("week"),
                                   style:
                                       TextStyle(fontWeight: FontWeight.normal)),
-                              textColor: Colors.black,
                               onPressed: () {
                                 setState(() {
                                   action = 0;
@@ -67,7 +65,6 @@ class _HomePageState extends State<HomePage> {
                                       .translate("month"),
                                   style:
                                       TextStyle(fontWeight: FontWeight.normal)),
-                              textColor: Colors.black,
                               onPressed: () {
                                 setState(() {
                                   action = 1;
@@ -80,7 +77,6 @@ class _HomePageState extends State<HomePage> {
                                       .translate("year"),
                                   style:
                                       TextStyle(fontWeight: FontWeight.normal)),
-                              textColor: Colors.black,
                               onPressed: () {
                                 setState(() {
                                   action = 2;
@@ -92,7 +88,6 @@ class _HomePageState extends State<HomePage> {
                                   AppLocalizations.of(context).translate("all"),
                                   style:
                                       TextStyle(fontWeight: FontWeight.normal)),
-                              textColor: Colors.black,
                               onPressed: () {
                                 setState(() {
                                   action = 3;
@@ -133,7 +128,6 @@ class _HomePageState extends State<HomePage> {
                                       .translate("week"),
                                   style:
                                       TextStyle(fontWeight: FontWeight.normal)),
-                              textColor: Colors.black,
                               onPressed: () {
                                 setState(() {
                                   action = 0;
@@ -146,7 +140,6 @@ class _HomePageState extends State<HomePage> {
                                       .translate("month"),
                                   style:
                                       TextStyle(fontWeight: FontWeight.normal)),
-                              textColor: Colors.black,
                               onPressed: () {
                                 setState(() {
                                   action = 1;
@@ -159,7 +152,6 @@ class _HomePageState extends State<HomePage> {
                                       .translate("year"),
                                   style:
                                       TextStyle(fontWeight: FontWeight.normal)),
-                              textColor: Colors.black,
                               onPressed: () {
                                 setState(() {
                                   action = 2;
@@ -171,7 +163,6 @@ class _HomePageState extends State<HomePage> {
                                   AppLocalizations.of(context).translate("all"),
                                   style:
                                       TextStyle(fontWeight: FontWeight.normal)),
-                              textColor: Colors.black,
                               onPressed: () {
                                 setState(() {
                                   action = 3;

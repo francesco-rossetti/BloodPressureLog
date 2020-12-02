@@ -3,7 +3,7 @@ import 'package:bloodpressurelog/history.dart';
 import 'package:bloodpressurelog/home.dart';
 import 'package:bloodpressurelog/settings.dart';
 import 'package:bloodpressurelog/utils/AppLocalization.dart';
-import 'package:convex_bottom_bar/convex_bottom_bar.dart';
+import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 
 class BottomBar extends StatefulWidget {
@@ -16,23 +16,35 @@ class _BottomBarState extends State<BottomBar> {
 
   @override
   Widget build(BuildContext context) {
-    return ConvexAppBar(
+    return BottomNavyBar(
       items: [
-        TabItem(
-            icon: Icons.home,
-            title: AppLocalizations.of(context).translate("home")),
-        TabItem(
-            icon: Icons.history,
-            title: AppLocalizations.of(context).translate("history")),
-        TabItem(
-            icon: Icons.add,
-            title: AppLocalizations.of(context).translate("add")),
-        TabItem(
-            icon: Icons.settings,
-            title: AppLocalizations.of(context).translate("settings")),
+        BottomNavyBarItem(
+            icon: Icon(Icons.home),
+            title: Text(AppLocalizations.of(context).translate("home")),
+            activeColor: Theme.of(context).brightness == Brightness.light
+                ? Colors.blue
+                : Colors.white),
+        BottomNavyBarItem(
+            icon: Icon(Icons.history),
+            title: Text(AppLocalizations.of(context).translate("history")),
+            activeColor: Theme.of(context).brightness == Brightness.light
+                ? Colors.blue
+                : Colors.white),
+        BottomNavyBarItem(
+            icon: Icon(Icons.add),
+            title: Text(AppLocalizations.of(context).translate("add")),
+            activeColor: Theme.of(context).brightness == Brightness.light
+                ? Colors.blue
+                : Colors.white),
+        BottomNavyBarItem(
+            icon: Icon(Icons.settings),
+            title: Text(AppLocalizations.of(context).translate("settings")),
+            activeColor: Theme.of(context).brightness == Brightness.light
+                ? Colors.blue
+                : Colors.white),
       ],
-      initialActiveIndex: currentIndex,
-      onTap: (int i) {
+      selectedIndex: currentIndex,
+      onItemSelected: (int i) {
         if (currentIndex != i) {
           currentIndex = i;
 

@@ -3,7 +3,7 @@ description: A new Flutter application.
 
 publish_to: 'none'
 
-version: 1.0.0+1
+version: 1.0.0+2
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -36,7 +36,7 @@ dependencies:
 
   #UI
   intro_slider: ^2.3.3
-  convex_bottom_bar: ^2.6.0
+  bottom_navy_bar: ^5.6.0
   fluttertoast: ^7.1.1
   rounded_loading_button: ^1.0.15
   step_progress_indicator: ^0.2.4+7

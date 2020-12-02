@@ -34,7 +34,6 @@ class _HistoryState extends State<History> {
                   FlatButton(
                     child: Text(AppLocalizations.of(context).translate("week"),
                         style: TextStyle(fontWeight: FontWeight.normal)),
-                    textColor: Colors.black,
                     onPressed: () {
                       setState(() {
                         action = 0;
@@ -44,7 +43,6 @@ class _HistoryState extends State<History> {
                   FlatButton(
                     child: Text(AppLocalizations.of(context).translate("month"),
                         style: TextStyle(fontWeight: FontWeight.normal)),
-                    textColor: Colors.black,
                     onPressed: () {
                       setState(() {
                         action = 1;
@@ -54,7 +52,6 @@ class _HistoryState extends State<History> {
                   FlatButton(
                     child: Text(AppLocalizations.of(context).translate("year"),
                         style: TextStyle(fontWeight: FontWeight.normal)),
-                    textColor: Colors.black,
                     onPressed: () {
                       setState(() {
                         action = 2;
@@ -64,7 +61,6 @@ class _HistoryState extends State<History> {
                   FlatButton(
                     child: Text(AppLocalizations.of(context).translate("all"),
                         style: TextStyle(fontWeight: FontWeight.normal)),
-                    textColor: Colors.black,
                     onPressed: () {
                       setState(() {
                         action = 3;

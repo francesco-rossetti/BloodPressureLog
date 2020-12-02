@@ -76,23 +76,6 @@ class _SettingsState extends State<Settings> {
                     style: TextStyle(fontSize: 20)),
               ))),
       Padding(
-          padding: EdgeInsets.only(left: 15, right: 15, top: 5),
-          child: SizedBox(
-              width: double.infinity,
-              height: 40,
-              child: RaisedButton(
-                textColor: Colors.white,
-                color: Colors.blue,
-                onPressed: () async {
-                  if (await inAppReview.isAvailable()) {
-                    inAppReview.requestReview();
-                  }
-                },
-                child: new Text(
-                    AppLocalizations.of(context).translate("rateApp"),
-                    style: TextStyle(fontSize: 20)),
-              ))),
-      Padding(
           padding: EdgeInsets.only(left: 15, right: 15, top: 15),
           child: SizedBox(
               width: double.infinity,
