@@ -181,7 +181,8 @@ class _HistoryState extends State<History> {
           IconButton(
             icon: Icon(Icons.share, color: Colors.white),
             onPressed: () async {
-              var path = await PDFProvider.pdfAziendePeriod(context, action);
+              var path =
+                  await PDFProvider.pdfMeasurementPeriod(context, action);
               Share.shareFiles([path],
                   subject: AppLocalizations.of(context)
                       .translate("exportMeasurements"));

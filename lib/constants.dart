@@ -108,7 +108,7 @@ int calculateAvgSpo2(List<Measurement> measurements) {
     }
   });
 
-  avg /= count;
+  if (count != 0) avg /= count;
 
   return avg.round();
 }
