@@ -21,11 +21,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int action = 0;
 
-  @override
-  void initState() {
-    super.initState();
-  }
-
   generateBody(BuildContext context) {
     return FutureBuilder(
       future: MeasurementService().readFilter(action),

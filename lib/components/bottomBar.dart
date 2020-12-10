@@ -7,13 +7,13 @@ import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 
 class BottomBar extends StatefulWidget {
+  static int currentIndex = 0;
+
   @override
   _BottomBarState createState() => _BottomBarState();
 }
 
 class _BottomBarState extends State<BottomBar> {
-  static int currentIndex = 0;
-
   @override
   Widget build(BuildContext context) {
     return BottomNavyBar(
@@ -43,10 +43,10 @@ class _BottomBarState extends State<BottomBar> {
                 ? Colors.blue
                 : Colors.white),
       ],
-      selectedIndex: currentIndex,
+      selectedIndex: BottomBar.currentIndex,
       onItemSelected: (int i) {
-        if (currentIndex != i) {
-          currentIndex = i;
+        if (BottomBar.currentIndex != i) {
+          BottomBar.currentIndex = i;
 
           switch (i) {
             case 0:

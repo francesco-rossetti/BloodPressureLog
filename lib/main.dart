@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:admob_flutter/admob_flutter.dart';
 import 'package:bloodpressurelog/components/onBoarding.dart';
+import 'package:bloodpressurelog/components/quickActionsManager.dart';
 import 'package:bloodpressurelog/home.dart';
 import 'package:bloodpressurelog/utils/AppLocalization.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
@@ -75,7 +76,7 @@ class MyApp extends StatelessWidget {
       ],
       localeResolutionCallback: localeCallback,
       navigatorObservers: <NavigatorObserver>[observer],
-      home: home,
+      home: QuickActionsManager(child: home),
     );
   }
 }

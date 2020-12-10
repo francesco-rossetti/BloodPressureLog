@@ -3,7 +3,7 @@ description: A new Flutter application.
 
 publish_to: 'none'
 
-version: 1.0.0+2
+version: 1.1.0+3
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -19,6 +19,7 @@ dependencies:
   basic_utils: ^2.6.3
   path_provider: ^1.6.24
   intl: ^0.16.1
+  quick_actions: ^0.4.0+10
   package_info: '>=0.4.3+2 <2.0.0'
   shared_preferences: '>=0.5.12+4 <2.0.0'
 
