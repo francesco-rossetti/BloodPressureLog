@@ -55,8 +55,6 @@ class _UpdateRecordState extends State<UpdateRecord> {
     );
 
     interstitialAd.load();
-
-    dateTimeRecord = DateTime.now();
   }
 
   createBody(BuildContext context) {

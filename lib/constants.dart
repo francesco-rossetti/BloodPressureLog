@@ -99,7 +99,7 @@ int calculateAvgBpm(List<Measurement> measurements) {
 
 int calculateAvgSpo2(List<Measurement> measurements) {
   double avg = 0;
-  int count = 1;
+  int count = 0;
 
   measurements.forEach((element) {
     if (element.oxygenationMesurement != null) {
