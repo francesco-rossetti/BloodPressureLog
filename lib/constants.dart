@@ -1,7 +1,9 @@
 import 'package:admob_flutter/admob_flutter.dart';
+import 'package:bloodpressurelog/utils/AppLocalization.dart';
 import 'package:bloodpressurelog/utils/database/models/measurement.dart';
 import 'package:flutter/material.dart';
 import 'package:in_app_review/in_app_review.dart';
+import 'package:intl/intl.dart';
 
 const String kBannerID = "ca-app-pub-3318650813130043/5546963278";
 const String kInterstitialID = "ca-app-pub-3318650813130043/4533264503";
@@ -93,4 +95,32 @@ int calculateAvgBpm(List<Measurement> measurements) {
   avg /= measurements.length;
 
   return avg.round();
+}
+
+int calculateAvgSpo2(List<Measurement> measurements) {
+  double avg = 0;
+  int count = 1;
+
+  measurements.forEach((element) {
+    if (element.oxygenationMesurement != null) {
+      avg += element.oxygenationMesurement;
+      count++;
+    }
+  });
+
+  avg /= count;
+
+  return avg.round();
+}
+
+String langFormatDate(BuildContext context, DateTime date) {
+  return AppLocalizations.of(context).locale.languageCode == "it"
+      ? DateFormat("dd/MM/yyyy HH:mm:ss").format(date)
+      : DateFormat("yyyy-MM-dd HH:mm:ss").format(date);
+}
+
+String langFormatDateOnly(BuildContext context, DateTime date) {
+  return AppLocalizations.of(context).locale.languageCode == "it"
+      ? DateFormat("dd/MM/yyyy").format(date)
+      : DateFormat("yyyy-MM-dd").format(date);
 }

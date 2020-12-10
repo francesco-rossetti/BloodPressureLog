@@ -9,6 +9,8 @@ import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pdf/widgets.dart' as pw;
 
+import '../constants.dart';
+
 class PDFProvider {
   static pw.Document initDocument() {
     final pdf = pw.Document(deflate: zlib.encode);
@@ -35,6 +37,7 @@ class PDFProvider {
       String moduleName = AppLocalizations.of(context).translate("appName");
 
       pdf.addPage(pw.MultiPage(
+          orientation: pw.PageOrientation.landscape,
           build: (c) => [
                 pw.Center(
                     child: pw.Text(moduleName,
@@ -47,14 +50,17 @@ class PDFProvider {
                     AppLocalizations.of(context).translate("sys"),
                     AppLocalizations.of(context).translate("dia"),
                     AppLocalizations.of(context).translate("bpm"),
+                    AppLocalizations.of(context).translate("oxygenationLevel"),
                     AppLocalizations.of(context).translate("note")
                   ],
                   ...aziende.map((item) => [
-                        DateFormat("yyyy-MM-dd HH:mm:ss")
-                            .format(item.dateTimeMeasurement),
+                        langFormatDate(context, item.dateTimeMeasurement),
                         item.sysMeasurement.toString(),
                         item.diaMeasurement.toString(),
                         item.bpmMeasurement.toString(),
+                        item.oxygenationMesurement.toString() != null
+                            ? item.oxygenationMesurement.toString() + "%"
+                            : "",
                         item.notesMeasurement
                       ])
                 ])
@@ -100,19 +106,33 @@ class PDFProvider {
       final pdf = initDocument();
 
       String periodName = "";
+      String date = "";
 
       switch (period) {
         case 0:
           periodName = "week";
+          date = langFormatDateOnly(
+                  context, DateTime.now().subtract(Duration(days: 7))) +
+              " - " +
+              langFormatDateOnly(context, DateTime.now());
           break;
         case 1:
           periodName = "month";
+          date = langFormatDateOnly(
+                  context, DateTime.now().subtract(Duration(days: 30))) +
+              " - " +
+              langFormatDateOnly(context, DateTime.now());
           break;
         case 2:
           periodName = "year";
+          date = langFormatDateOnly(
+                  context, DateTime.now().subtract(Duration(days: 365))) +
+              " - " +
+              langFormatDateOnly(context, DateTime.now());
           break;
         case 3:
           periodName = "all";
+          date = AppLocalizations.of(context).translate("allDates");
           break;
       }
 
@@ -121,6 +141,7 @@ class PDFProvider {
           AppLocalizations.of(context).translate(periodName);
 
       pdf.addPage(pw.MultiPage(
+          orientation: pw.PageOrientation.landscape,
           build: (c) => [
                 pw.Center(
                     child: pw.Text(moduleName,
@@ -133,21 +154,24 @@ class PDFProvider {
                     AppLocalizations.of(context).translate("sys"),
                     AppLocalizations.of(context).translate("dia"),
                     AppLocalizations.of(context).translate("bpm"),
+                    AppLocalizations.of(context).translate("oxygenationLevel"),
                     AppLocalizations.of(context).translate("note")
                   ],
                   ...aziende.map((item) => [
-                        DateFormat("yyyy-MM-dd HH:mm:ss")
-                            .format(item.dateTimeMeasurement),
+                        langFormatDate(context, item.dateTimeMeasurement),
                         item.sysMeasurement.toString(),
                         item.diaMeasurement.toString(),
                         item.bpmMeasurement.toString(),
+                        item.oxygenationMesurement.toString() != null
+                            ? item.oxygenationMesurement.toString() + "%"
+                            : "",
                         item.notesMeasurement
-                      ]),
+                      ])
                 ]),
                 pw.Text("\n"),
                 pw.Text(AppLocalizations.of(context)
                         .translate("informationDateTime") +
-                    DateFormat("yyyy-MM-dd HH:mm:ss").format(DateTime.now())),
+                    date),
               ]));
 
       String dir = (await getPath()).path;

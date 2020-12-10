@@ -31,6 +31,7 @@ class DBProvider {
         "\"sysMeasurement\"	INTEGER NOT NULL,"
         "\"diaMeasurement\"	INTEGER NOT NULL,"
         "\"bpmMeasurement\"	INTEGER NOT NULL,"
+        "\"oxygenationMesurement\" INTEGER,"
         "\"notesMeasurement\" TEXT,"
         "\"tagMeasurement\"	TEXT,"
         "\"dateInsert\"	DATETIME,"

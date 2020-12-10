@@ -14,6 +14,7 @@ class Measurement {
     this.sysMeasurement,
     this.diaMeasurement,
     this.bpmMeasurement,
+    this.oxygenationMesurement,
     this.notesMeasurement,
     this.tagMeasurement,
     this.dateInsert,
@@ -26,6 +27,7 @@ class Measurement {
   int sysMeasurement;
   int diaMeasurement;
   int bpmMeasurement;
+  int oxygenationMesurement;
   String notesMeasurement;
   String tagMeasurement;
   DateTime dateInsert;
@@ -38,6 +40,7 @@ class Measurement {
         sysMeasurement: json["sysMeasurement"],
         diaMeasurement: json["diaMeasurement"],
         bpmMeasurement: json["bpmMeasurement"],
+        oxygenationMesurement: json["oxygenationMesurement"],
         notesMeasurement: json["notesMeasurement"],
         tagMeasurement: json['tagMeasurement'],
         dateInsert: json["dateInsert"] != null
@@ -57,6 +60,7 @@ class Measurement {
         "sysMeasurement": sysMeasurement,
         "diaMeasurement": diaMeasurement,
         "bpmMeasurement": bpmMeasurement,
+        "oxygenationMesurement": oxygenationMesurement,
         "notesMeasurement": notesMeasurement,
         "tagMeasurement": tagMeasurement != null ? tagMeasurement : null,
         "dateInsert": dateInsert != null ? dateInsert.toIso8601String() : null,

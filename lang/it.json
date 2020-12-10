@@ -13,8 +13,10 @@
     "all": "SEMPRE",
 
     "note": "Note",
+    "oxygenationLevel": "Saturazione Ossigeno",
 
-    "informationDateTime": "Le presenti misurazioni sono state stampate il: ",
+    "informationDateTime": "Le presenti misurazioni riguardano il periodo: ",
+    "allDates": "Tutte le date disponibili",
 
     "exportMeasurements": "Esporta Misurazioni",
     "importMeasurements": "Importa Misurazioni",
@@ -38,6 +40,7 @@
     "lblSYS": "SYS",
     "lblDIA": "DIA",
     "lblBPM": "BPM",
+    "lblSpO2": "SPO2",
     
     "home": "Home",
     "add": "Aggiungi",
@@ -55,6 +58,7 @@
     "sys": "Sistolica",
     "dia": "Diastolica",
     "bpm": "Pulsazione",
+    "spo2": "Saturazione\nOssigeno",
 
     "instruction": "Come funziona l'app",
     "rateApp": "Ti piace l'app? Valutaci 5 stelle",

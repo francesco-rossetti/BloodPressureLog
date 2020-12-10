@@ -13,8 +13,10 @@
     "all": "ALL",
 
     "note": "Note",
+    "oxygenationLevel": "Oxygen Saturation",
 
-    "informationDateTime": "These measurements were printed on: ",
+    "informationDateTime": "These measurements cover the period: ",
+    "allDates": "All available dates",
 
     "exportMeasurements": "Export Measurements",
     "importMeasurements": "Import Measurements",
@@ -38,6 +40,7 @@
     "lblSYS": "SYS",
     "lblDIA": "DIA",
     "lblBPM": "BPM",
+    "lblSpO2": "SPO2",
     
     "home": "Home",
     "add": "Add",
@@ -55,6 +58,7 @@
     "sys": "Systolic",
     "dia": "Diastolic",
     "bpm": "Heartbeat",
+    "spo2": "Oxygen\nSaturation",
 
     "instruction": "How the app works",
     "rateApp": "Do you like the app? Rate us 5 stars",

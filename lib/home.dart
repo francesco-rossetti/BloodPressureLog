@@ -1,8 +1,8 @@
-import 'package:bloodpressurelog/components/barAreaGraph.dart';
 import 'package:bloodpressurelog/components/bpmCircularPercentIndicator.dart';
 import 'package:bloodpressurelog/components/diaCircularPercentIndicator.dart';
 import 'package:bloodpressurelog/components/emptyList.dart';
 import 'package:bloodpressurelog/components/lineAreaGraph.dart';
+import 'package:bloodpressurelog/components/oxygentionCircularPercentIndicator.dart';
 import 'package:bloodpressurelog/components/sysCircularPercentIndicator.dart';
 import 'package:bloodpressurelog/constants.dart';
 import 'package:bloodpressurelog/utils/AppLocalization.dart';
@@ -196,9 +196,19 @@ class _HomePageState extends State<HomePage> {
                                 SizedBox(width: 20),
                                 DiaCircularPercentIndicator(
                                     calculateAvgDia(snapshot.data)),
-                                SizedBox(width: 20),
+                              ])),
+                      SizedBox(height: 10),
+                      Container(
+                          height: 100,
+                          child: ListView(
+                              scrollDirection: Axis.horizontal,
+                              shrinkWrap: true,
+                              children: [
                                 BpmCircularPercentIndicator(
                                     calculateAvgBpm(snapshot.data)),
+                                SizedBox(width: 20),
+                                OxygenationCircularPercentIndicator(
+                                    calculateAvgSpo2(snapshot.data))
                               ])),
                       SizedBox(height: 10),
                     ]))),
@@ -215,21 +225,6 @@ class _HomePageState extends State<HomePage> {
                                   .translate("graphVariation"),
                               style: TextStyle(fontWeight: FontWeight.bold))),
                       LineAreaGraph(measurements: snapshot.data),
-                      SizedBox(height: 5),
-                    ]))),
-            Padding(
-                padding: EdgeInsets.only(top: 5.0, left: 5.0, right: 5.0),
-                child: Card(
-                    child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: <Widget>[
-                      SizedBox(height: 5),
-                      Center(
-                          child: Text(
-                              AppLocalizations.of(context)
-                                  .translate("graphOccurrences"),
-                              style: TextStyle(fontWeight: FontWeight.bold))),
-                      BarAreaGraph(measurements: snapshot.data),
                       SizedBox(height: 5),
                     ]))),
             SizedBox(height: 30),

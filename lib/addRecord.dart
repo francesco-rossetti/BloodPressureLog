@@ -7,7 +7,6 @@ import 'package:commons/commons.dart';
 import 'package:flutter/material.dart';
 import 'package:bloodpressurelog/components/pageSample.dart' as components;
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
-import 'package:intl/intl.dart';
 import 'package:numberpicker/numberpicker.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 
@@ -21,6 +20,8 @@ class AddRecord extends StatefulWidget {
 class _AddRecordState extends State<AddRecord> {
   AdmobInterstitial interstitialAd;
   final TextEditingController noteController = new TextEditingController();
+  final TextEditingController oxygenationController =
+      new TextEditingController();
   final RoundedLoadingButtonController _btnController =
       new RoundedLoadingButtonController();
   static int sysRecord = 100, diaRecord = 70, bpmRecord = 60;
@@ -112,33 +113,47 @@ class _AddRecordState extends State<AddRecord> {
                           ]),
                         ])),
                 SizedBox(height: 20),
-                Padding(
-                    padding: EdgeInsets.only(top: 10.0),
-                    child: RaisedButton(
-                        onPressed: () {
-                          DatePicker.showDateTimePicker(context,
-                              showTitleActions: true, onChanged: (date) {
-                            setState(() {
-                              dateTimeRecord = date;
-                            });
-                          }, onConfirm: (date) {
-                            setState(() {
-                              dateTimeRecord = date;
-                            });
-                          },
-                              currentTime: dateTimeRecord,
-                              locale: LocaleType.it);
-                        },
-                        child: ListTile(
-                          leading: Icon(Icons.calendar_today),
-                          title: Text(AppLocalizations.of(context)
-                              .translate("selectDateTime")),
-                          subtitle: Text(DateFormat("yyyy-MM-dd HH:mm:ss")
-                              .format(dateTimeRecord)),
-                        ))),
               ],
             ),
           ),
+          TextFormField(
+            controller: oxygenationController,
+            keyboardType: TextInputType.number,
+            onSaved: (String val) {},
+            decoration: InputDecoration(
+              icon: const Icon(Icons.biotech),
+              labelText:
+                  AppLocalizations.of(context).translate("oxygenationLevel"),
+            ),
+          ),
+          SizedBox(height: 20),
+          Padding(
+              padding: EdgeInsets.only(left: 5.0, right: 5.0),
+              child: RaisedButton(
+                  onPressed: () {
+                    DatePicker.showDateTimePicker(context,
+                        showTitleActions: true, onChanged: (date) {
+                      setState(() {
+                        dateTimeRecord = date;
+                      });
+                    }, onConfirm: (date) {
+                      setState(() {
+                        dateTimeRecord = date;
+                      });
+                    },
+                        currentTime: dateTimeRecord,
+                        locale:
+                            AppLocalizations.of(context).locale.languageCode ==
+                                    "it"
+                                ? LocaleType.it
+                                : LocaleType.en);
+                  },
+                  child: ListTile(
+                    leading: Icon(Icons.calendar_today),
+                    title: Text(AppLocalizations.of(context)
+                        .translate("selectDateTime")),
+                    subtitle: Text(langFormatDate(context, dateTimeRecord)),
+                  ))),
           SizedBox(height: 20),
           TextFormField(
             controller: noteController,
@@ -163,6 +178,10 @@ class _AddRecordState extends State<AddRecord> {
                   measurement.diaMeasurement = diaRecord;
                   measurement.notesMeasurement = noteController.text;
                   measurement.sysMeasurement = sysRecord;
+                  measurement.oxygenationMesurement =
+                      oxygenationController.text.isNotEmpty
+                          ? int.parse(oxygenationController.text)
+                          : null;
 
                   MeasurementService measurementService =
                       new MeasurementService();

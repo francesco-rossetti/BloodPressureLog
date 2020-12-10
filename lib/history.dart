@@ -7,7 +7,6 @@ import 'package:bloodpressurelog/utils/database/models/measurement.dart';
 import 'package:commons/commons.dart';
 import 'package:flutter/material.dart';
 import 'package:bloodpressurelog/components/pageSample.dart' as components;
-import 'package:intl/intl.dart';
 
 class History extends StatefulWidget {
   @override
@@ -143,12 +142,29 @@ class _HistoryState extends State<History> {
                             title: Text(
                                 AppLocalizations.of(context).translate(level),
                                 style: TextStyle(fontWeight: FontWeight.bold)),
-                            subtitle: Text(DateFormat("yyyy-MM-dd HH:mm:ss")
-                                    .format(snapshot
-                                        .data[index].dateTimeMeasurement) +
-                                " | " +
-                                snapshot.data[index].bpmMeasurement.toString() +
-                                "bpm"),
+                            subtitle: snapshot
+                                        .data[index].oxygenationMesurement !=
+                                    null
+                                ? Text(langFormatDate(
+                                        context,
+                                        snapshot
+                                            .data[index].dateTimeMeasurement) +
+                                    " | " +
+                                    snapshot.data[index].bpmMeasurement
+                                        .toString() +
+                                    "bpm" +
+                                    " | " +
+                                    snapshot.data[index].oxygenationMesurement
+                                        .toString() +
+                                    "%")
+                                : Text(langFormatDate(
+                                        context,
+                                        snapshot
+                                            .data[index].dateTimeMeasurement) +
+                                    " | " +
+                                    snapshot.data[index].bpmMeasurement
+                                        .toString() +
+                                    "bpm"),
                           )));
                     });
               }))

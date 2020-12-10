@@ -13,13 +13,13 @@ class LineAreaGraph extends StatelessWidget {
   Widget build(BuildContext context) {
     var chart = new charts.LineChart(_createData(this.measurements, context),
         defaultRenderer: new charts.LineRendererConfig(includeArea: true),
-        behaviors: [new charts.SeriesLegend()],
+        behaviors: [new charts.SeriesLegend(horizontalFirst: false)],
         animate: animate);
 
     return new Padding(
       padding: new EdgeInsets.all(2.0),
       child: new SizedBox(
-        height: 250.0,
+        height: 500.0,
         child: chart,
       ),
     );
@@ -50,6 +50,15 @@ class LineAreaGraph extends StatelessWidget {
         domainFn: (Measurement measurement, _) =>
             measurements.indexOf(measurement),
         measureFn: (Measurement measurement, _) => measurement.bpmMeasurement,
+        data: measurements,
+      ),
+      new charts.Series<Measurement, int>(
+        id: AppLocalizations.of(context).translate("oxygenationLevel"),
+        colorFn: (_, __) => charts.MaterialPalette.yellow.shadeDefault,
+        domainFn: (Measurement measurement, _) =>
+            measurements.indexOf(measurement),
+        measureFn: (Measurement measurement, _) =>
+            measurement.oxygenationMesurement,
         data: measurements,
       ),
     ];
