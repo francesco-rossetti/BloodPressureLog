@@ -1,14 +1,16 @@
 import 'package:bloodpressurelog/constants.dart';
-import 'package:bloodpressurelog/updateRecord.dart';
-import 'package:bloodpressurelog/utils/AppLocalization.dart';
-import 'package:bloodpressurelog/utils/PDFProvider.dart';
-import 'package:bloodpressurelog/utils/database/controllers/measurementService.dart';
+import 'package:bloodpressurelog/update_record.dart';
+import 'package:bloodpressurelog/utils/app_localization.dart';
+import 'package:bloodpressurelog/utils/pdf_provider.dart';
+import 'package:bloodpressurelog/utils/database/controllers/measurement_service.dart';
 import 'package:bloodpressurelog/utils/database/models/measurement.dart';
-import 'package:commons/commons.dart';
 import 'package:flutter/material.dart';
-import 'package:bloodpressurelog/components/pageSample.dart' as components;
+import 'package:bloodpressurelog/components/page_sample.dart' as components;
+import 'package:share_plus/share_plus.dart';
 
 class History extends StatefulWidget {
+  const History({Key? key}) : super(key: key);
+
   @override
   _HistoryState createState() => _HistoryState();
 }
@@ -21,53 +23,52 @@ class _HistoryState extends State<History> {
       kbanner,
       Card(
           child: Column(children: [
-        SizedBox(height: 10),
-        Text(AppLocalizations.of(context).translate("filter"),
-            style: TextStyle(fontWeight: FontWeight.bold)),
-        Container(
-            height: 50,
+        const SizedBox(height: 10),
+        Text(AppLocalizations.of(context)!.translate("filter")!,
+            style: const TextStyle(fontWeight: FontWeight.bold)),
+        Expanded(
             child: ListView(
                 scrollDirection: Axis.horizontal,
                 shrinkWrap: true,
                 children: [
-                  FlatButton(
-                    child: Text(AppLocalizations.of(context).translate("week"),
-                        style: TextStyle(fontWeight: FontWeight.normal)),
-                    onPressed: () {
-                      setState(() {
-                        action = 0;
-                      });
-                    },
-                  ),
-                  FlatButton(
-                    child: Text(AppLocalizations.of(context).translate("month"),
-                        style: TextStyle(fontWeight: FontWeight.normal)),
-                    onPressed: () {
-                      setState(() {
-                        action = 1;
-                      });
-                    },
-                  ),
-                  FlatButton(
-                    child: Text(AppLocalizations.of(context).translate("year"),
-                        style: TextStyle(fontWeight: FontWeight.normal)),
-                    onPressed: () {
-                      setState(() {
-                        action = 2;
-                      });
-                    },
-                  ),
-                  FlatButton(
-                    child: Text(AppLocalizations.of(context).translate("all"),
-                        style: TextStyle(fontWeight: FontWeight.normal)),
-                    onPressed: () {
-                      setState(() {
-                        action = 3;
-                      });
-                    },
-                  ),
-                ])),
-        SizedBox(height: 5),
+              TextButton(
+                child: Text(AppLocalizations.of(context)!.translate("week")!,
+                    style: const TextStyle(fontWeight: FontWeight.normal)),
+                onPressed: () {
+                  setState(() {
+                    action = 0;
+                  });
+                },
+              ),
+              TextButton(
+                child: Text(AppLocalizations.of(context)!.translate("month")!,
+                    style: const TextStyle(fontWeight: FontWeight.normal)),
+                onPressed: () {
+                  setState(() {
+                    action = 1;
+                  });
+                },
+              ),
+              TextButton(
+                child: Text(AppLocalizations.of(context)!.translate("year")!,
+                    style: const TextStyle(fontWeight: FontWeight.normal)),
+                onPressed: () {
+                  setState(() {
+                    action = 2;
+                  });
+                },
+              ),
+              TextButton(
+                child: Text(AppLocalizations.of(context)!.translate("all")!,
+                    style: const TextStyle(fontWeight: FontWeight.normal)),
+                onPressed: () {
+                  setState(() {
+                    action = 3;
+                  });
+                },
+              ),
+            ])),
+        const SizedBox(height: 5),
       ])),
       Expanded(
           child: FutureBuilder(
@@ -76,12 +77,12 @@ class _HistoryState extends State<History> {
                 if (!snapshot.hasData) return Container();
 
                 return ListView.builder(
-                    padding: EdgeInsets.only(left: 5.0, right: 5.0),
-                    itemCount: snapshot.data.length,
+                    padding: const EdgeInsets.only(left: 5.0, right: 5.0),
+                    itemCount: snapshot.data!.length,
                     itemBuilder: (context, index) {
                       var level = calculateLevel(
-                          snapshot.data[index].sysMeasurement,
-                          snapshot.data[index].diaMeasurement);
+                          snapshot.data![index].sysMeasurement!,
+                          snapshot.data![index].diaMeasurement!);
 
                       Color color = Colors.white;
 
@@ -117,7 +118,8 @@ class _HistoryState extends State<History> {
                                 .push(MaterialPageRoute(
                                     builder: (BuildContext context) =>
                                         UpdateRecord(
-                                            measurement: snapshot.data[index])))
+                                            measurement:
+                                                snapshot.data![index])))
                                 .then((value) {
                               setState(() {});
                             });
@@ -129,40 +131,42 @@ class _HistoryState extends State<History> {
                               height: 60,
                               child: Center(
                                   child: Text(
-                                      snapshot.data[index].sysMeasurement
+                                      snapshot.data![index].sysMeasurement
                                               .toString() +
                                           "\n" +
-                                          snapshot.data[index].diaMeasurement
+                                          snapshot.data![index].diaMeasurement
                                               .toString(),
                                       textAlign: TextAlign.center,
-                                      style: TextStyle(color: Colors.white))),
+                                      style: const TextStyle(
+                                          color: Colors.white))),
                               decoration: BoxDecoration(
                                   shape: BoxShape.circle, color: color),
                             ),
                             title: Text(
-                                AppLocalizations.of(context).translate(level),
-                                style: TextStyle(fontWeight: FontWeight.bold)),
+                                AppLocalizations.of(context)!.translate(level)!,
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold)),
                             subtitle: snapshot
-                                        .data[index].oxygenationMesurement !=
+                                        .data![index].oxygenationMesurement !=
                                     null
                                 ? Text(langFormatDate(
                                         context,
-                                        snapshot
-                                            .data[index].dateTimeMeasurement) +
+                                        snapshot.data![index]
+                                            .dateTimeMeasurement!) +
                                     " | " +
-                                    snapshot.data[index].bpmMeasurement
+                                    snapshot.data![index].bpmMeasurement
                                         .toString() +
                                     "bpm" +
                                     " | " +
-                                    snapshot.data[index].oxygenationMesurement
+                                    snapshot.data![index].oxygenationMesurement
                                         .toString() +
                                     "%")
                                 : Text(langFormatDate(
                                         context,
-                                        snapshot
-                                            .data[index].dateTimeMeasurement) +
+                                        snapshot.data![index]
+                                            .dateTimeMeasurement!) +
                                     " | " +
-                                    snapshot.data[index].bpmMeasurement
+                                    snapshot.data![index].bpmMeasurement!
                                         .toString() +
                                     "bpm"),
                           )));
@@ -179,12 +183,12 @@ class _HistoryState extends State<History> {
         body: createBody(context),
         appBarActions: [
           IconButton(
-            icon: Icon(Icons.share, color: Colors.white),
+            icon: const Icon(Icons.share, color: Colors.white),
             onPressed: () async {
               var path =
                   await PDFProvider.pdfMeasurementPeriod(context, action);
-              Share.shareFiles([path],
-                  subject: AppLocalizations.of(context)
+              Share.shareFiles([path!],
+                  subject: AppLocalizations.of(context)!
                       .translate("exportMeasurements"));
             },
           )

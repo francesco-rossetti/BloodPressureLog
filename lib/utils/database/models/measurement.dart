@@ -22,17 +22,17 @@ class Measurement {
     this.dateDelete,
   });
 
-  int idMeasurement;
-  DateTime dateTimeMeasurement;
-  int sysMeasurement;
-  int diaMeasurement;
-  int bpmMeasurement;
-  int oxygenationMesurement;
-  String notesMeasurement;
-  String tagMeasurement;
-  DateTime dateInsert;
-  DateTime dateUpdate;
-  DateTime dateDelete;
+  int? idMeasurement;
+  DateTime? dateTimeMeasurement;
+  int? sysMeasurement;
+  int? diaMeasurement;
+  int? bpmMeasurement;
+  int? oxygenationMesurement;
+  String? notesMeasurement;
+  String? tagMeasurement;
+  DateTime? dateInsert;
+  DateTime? dateUpdate;
+  DateTime? dateDelete;
 
   factory Measurement.fromJson(Map<String, dynamic> json) => Measurement(
         idMeasurement: json["idMeasurement"],
@@ -56,15 +56,15 @@ class Measurement {
 
   Map<String, dynamic> toJson() => {
         "idMeasurement": idMeasurement,
-        "dateTimeMeasurement": dateTimeMeasurement.toIso8601String(),
+        "dateTimeMeasurement": dateTimeMeasurement!.toIso8601String(),
         "sysMeasurement": sysMeasurement,
         "diaMeasurement": diaMeasurement,
         "bpmMeasurement": bpmMeasurement,
         "oxygenationMesurement": oxygenationMesurement,
         "notesMeasurement": notesMeasurement,
-        "tagMeasurement": tagMeasurement != null ? tagMeasurement : null,
-        "dateInsert": dateInsert != null ? dateInsert.toIso8601String() : null,
-        "dateUpdate": dateUpdate != null ? dateUpdate.toIso8601String() : null,
-        "dateDelete": dateDelete != null ? dateDelete.toIso8601String() : null,
+        "tagMeasurement": tagMeasurement,
+        "dateInsert": dateInsert != null ? dateInsert!.toIso8601String() : null,
+        "dateUpdate": dateUpdate != null ? dateUpdate!.toIso8601String() : null,
+        "dateDelete": dateDelete != null ? dateDelete!.toIso8601String() : null,
       };
 }

@@ -1,16 +1,17 @@
-import 'dart:io';
-
-import 'package:bloodpressurelog/components/onBoarding.dart';
-import 'package:bloodpressurelog/components/pageSample.dart' as components;
+import 'package:bloodpressurelog/components/on_boarding.dart';
+import 'package:bloodpressurelog/components/page_sample.dart' as components;
 import 'package:bloodpressurelog/constants.dart';
 import 'package:bloodpressurelog/info.dart';
-import 'package:bloodpressurelog/utils/AppLocalization.dart';
-import 'package:bloodpressurelog/utils/JSONProvider.dart';
-import 'package:commons/commons.dart';
+import 'package:bloodpressurelog/utils/app_localization.dart';
+import 'package:bloodpressurelog/utils/json_provider.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:share_plus/share_plus.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Settings extends StatefulWidget {
+  const Settings({Key? key}) : super(key: key);
+
   @override
   _SettingsState createState() => _SettingsState();
 }
@@ -18,78 +19,71 @@ class Settings extends StatefulWidget {
 class _SettingsState extends State<Settings> {
   createBody(BuildContext context) {
     return ListView(children: [
-      SizedBox(height: 20),
+      const SizedBox(height: 20),
       Padding(
-          padding: EdgeInsets.only(left: 15, right: 15, top: 0),
+          padding: const EdgeInsets.only(left: 15, right: 15, top: 0),
           child: SizedBox(
               width: double.infinity,
               height: 40,
-              child: RaisedButton(
-                textColor: Colors.white,
-                color: Colors.blue,
+              child: ElevatedButton(
                 onPressed: () async {
                   var path = await JSONProvider.exportMeasurements();
                   Share.shareFiles([path],
-                      subject: AppLocalizations.of(context)
-                          .translate("importMeasurements"));
+                      subject: AppLocalizations.of(context)!
+                          .translate("importMeasurements")!);
                 },
-                child: new Text(
-                    AppLocalizations.of(context)
-                        .translate("exportMeasurements"),
-                    style: TextStyle(fontSize: 20)),
+                child: Text(
+                    AppLocalizations.of(context)!
+                        .translate("exportMeasurements")!,
+                    style: const TextStyle(fontSize: 20)),
               ))),
       Padding(
-          padding: EdgeInsets.only(left: 15, right: 15, top: 5),
+          padding: const EdgeInsets.only(left: 15, right: 15, top: 5),
           child: SizedBox(
               width: double.infinity,
               height: 40,
-              child: RaisedButton(
-                textColor: Colors.white,
-                color: Colors.blue,
+              child: ElevatedButton(
                 onPressed: () async {
-                  File file = await FilePicker.getFile(type: FileType.any);
+                  FilePickerResult? file =
+                      await FilePicker.platform.pickFiles(type: FileType.any);
 
-                  if (file != null) {
-                    JSONProvider.importMeasurements(file.path);
+                  if (file != null && file.files.isNotEmpty) {
+                    JSONProvider.importMeasurements(file.files.first.path!);
                   }
                 },
-                child: new Text(
-                    AppLocalizations.of(context)
-                        .translate("importMeasurements"),
-                    style: TextStyle(fontSize: 20)),
+                child: Text(
+                    AppLocalizations.of(context)!
+                        .translate("importMeasurements")!,
+                    style: const TextStyle(fontSize: 20)),
               ))),
-      SizedBox(height: 20),
+      const SizedBox(height: 20),
       Padding(
-          padding: EdgeInsets.only(left: 15, right: 15, top: 5),
+          padding: const EdgeInsets.only(left: 15, right: 15, top: 5),
           child: SizedBox(
               width: double.infinity,
               height: 40,
-              child: RaisedButton(
-                textColor: Colors.white,
-                color: Colors.blue,
+              child: ElevatedButton(
                 onPressed: () async {
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => IntroScreen(isReplay: true)));
+                      builder: (context) => const IntroScreen(isReplay: true)));
                 },
-                child: new Text(
-                    AppLocalizations.of(context).translate("instruction"),
-                    style: TextStyle(fontSize: 20)),
+                child: Text(
+                    AppLocalizations.of(context)!.translate("instruction")!,
+                    style: const TextStyle(fontSize: 20)),
               ))),
       Padding(
-          padding: EdgeInsets.only(left: 15, right: 15, top: 15),
+          padding: const EdgeInsets.only(left: 15, right: 15, top: 15),
           child: SizedBox(
               width: double.infinity,
               height: 40,
-              child: RaisedButton(
-                textColor: Colors.white,
-                color: Colors.blue,
+              child: ElevatedButton(
                 onPressed: () async {
                   if (await canLaunch(kDevURL)) await launch(kDevURL);
                 },
-                child: new Text(AppLocalizations.of(context).translate("myApp"),
-                    style: TextStyle(fontSize: 20)),
+                child: Text(AppLocalizations.of(context)!.translate("myApp")!,
+                    style: const TextStyle(fontSize: 20)),
               ))),
-      SizedBox(height: 20),
+      const SizedBox(height: 20),
       kLargeBanner
     ]);
   }
@@ -102,10 +96,10 @@ class _SettingsState extends State<Settings> {
         body: createBody(context),
         appBarActions: [
           IconButton(
-            icon: Icon(Icons.info_outline, color: Colors.white),
+            icon: const Icon(Icons.info_outline, color: Colors.white),
             onPressed: () async {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => InfoScreen()));
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => const InfoScreen()));
             },
           )
         ]);

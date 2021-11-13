@@ -1,25 +1,22 @@
 import 'dart:io';
 
 import 'package:admob_flutter/admob_flutter.dart';
-import 'package:bloodpressurelog/components/onBoarding.dart';
-import 'package:bloodpressurelog/components/quickActionsManager.dart';
+import 'package:bloodpressurelog/components/on_boarding.dart';
+import 'package:bloodpressurelog/components/quick_actions_manager.dart';
 import 'package:bloodpressurelog/home.dart';
-import 'package:bloodpressurelog/utils/AppLocalization.dart';
-import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:firebase_analytics/observer.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:bloodpressurelog/utils/app_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-Widget home = IntroScreen(isReplay: false);
+Widget home = const IntroScreen(isReplay: false);
 
 Future checkFirstSeen() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   bool _seen = (prefs.getBool('BloodPressureLog') ?? false);
 
   if (_seen) {
-    home = HomePage();
+    home = const HomePage();
   } else {
     await prefs.setBool('BloodPressureLog', true);
   }
@@ -30,28 +27,26 @@ void main() async {
 
   await checkFirstSeen();
 
-  Firebase.initializeApp();
   Admob.initialize();
 
   if (Platform.isIOS) await Admob.requestTrackingAuthorization();
 
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 Locale localeCallback(locale, supportedLocales) {
   for (var supportedLocale in supportedLocales) {
     if (supportedLocale.languageCode == locale.languageCode &&
-        supportedLocale.countryCode == locale.countryCode)
+        supportedLocale.countryCode == locale.countryCode) {
       return supportedLocale;
+    }
   }
 
   return supportedLocales.first;
 }
 
 class MyApp extends StatelessWidget {
-  static FirebaseAnalytics analytics = FirebaseAnalytics();
-  static FirebaseAnalyticsObserver observer =
-      FirebaseAnalyticsObserver(analytics: analytics);
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -67,15 +62,14 @@ class MyApp extends StatelessWidget {
         fontFamily: "Rubik",
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      supportedLocales: [Locale('en', 'US'), Locale('it', 'IT')],
-      localizationsDelegates: [
+      supportedLocales: const [Locale('en', 'US'), Locale('it', 'IT')],
+      localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate
       ],
       localeResolutionCallback: localeCallback,
-      navigatorObservers: <NavigatorObserver>[observer],
       home: QuickActionsManager(child: home),
     );
   }

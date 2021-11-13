@@ -1,5 +1,5 @@
 import 'package:admob_flutter/admob_flutter.dart';
-import 'package:bloodpressurelog/utils/AppLocalization.dart';
+import 'package:bloodpressurelog/utils/app_localization.dart';
 import 'package:bloodpressurelog/utils/database/models/measurement.dart';
 import 'package:flutter/material.dart';
 import 'package:in_app_review/in_app_review.dart';
@@ -64,9 +64,9 @@ String calculateLevel(int sysRecord, int diaRecord) {
 int calculateAvgSys(List<Measurement> measurements) {
   double avg = 0;
 
-  measurements.forEach((element) {
-    avg += element.sysMeasurement;
-  });
+  for (var element in measurements) {
+    avg += element.sysMeasurement!;
+  }
 
   avg /= measurements.length;
 
@@ -76,9 +76,9 @@ int calculateAvgSys(List<Measurement> measurements) {
 int calculateAvgDia(List<Measurement> measurements) {
   double avg = 0;
 
-  measurements.forEach((element) {
-    avg += element.diaMeasurement;
-  });
+  for (var element in measurements) {
+    avg += element.diaMeasurement!;
+  }
 
   avg /= measurements.length;
 
@@ -88,9 +88,9 @@ int calculateAvgDia(List<Measurement> measurements) {
 int calculateAvgBpm(List<Measurement> measurements) {
   double avg = 0;
 
-  measurements.forEach((element) {
-    avg += element.bpmMeasurement;
-  });
+  for (var element in measurements) {
+    avg += element.bpmMeasurement!;
+  }
 
   avg /= measurements.length;
 
@@ -101,12 +101,12 @@ int calculateAvgSpo2(List<Measurement> measurements) {
   double avg = 0;
   int count = 0;
 
-  measurements.forEach((element) {
+  for (var element in measurements) {
     if (element.oxygenationMesurement != null) {
-      avg += element.oxygenationMesurement;
+      avg += element.oxygenationMesurement!;
       count++;
     }
-  });
+  }
 
   if (count != 0) avg /= count;
 
@@ -114,13 +114,13 @@ int calculateAvgSpo2(List<Measurement> measurements) {
 }
 
 String langFormatDate(BuildContext context, DateTime date) {
-  return AppLocalizations.of(context).locale.languageCode == "it"
+  return AppLocalizations.of(context)!.locale.languageCode == "it"
       ? DateFormat("dd/MM/yyyy HH:mm:ss").format(date)
       : DateFormat("yyyy-MM-dd HH:mm:ss").format(date);
 }
 
 String langFormatDateOnly(BuildContext context, DateTime date) {
-  return AppLocalizations.of(context).locale.languageCode == "it"
+  return AppLocalizations.of(context)!.locale.languageCode == "it"
       ? DateFormat("dd/MM/yyyy").format(date)
       : DateFormat("yyyy-MM-dd").format(date);
 }
