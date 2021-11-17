@@ -1,5 +1,5 @@
-import 'package:bloodpressurelog/utils/app_localization.dart';
-import 'package:bloodpressurelog/utils/database/models/measurement.dart';
+import 'package:bloodpressurelog/domain/database/models/measurement.dart';
+import 'package:bloodpressurelog/domain/lang/app_localization.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:flutter/material.dart';
 

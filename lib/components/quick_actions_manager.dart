@@ -1,7 +1,8 @@
-import 'package:bloodpressurelog/add_record.dart';
 import 'package:bloodpressurelog/components/bottom_bar.dart';
-import 'package:bloodpressurelog/history.dart';
-import 'package:bloodpressurelog/utils/app_localization.dart';
+import 'package:bloodpressurelog/pages/add_record.dart';
+import 'package:bloodpressurelog/pages/history.dart';
+import 'package:bloodpressurelog/pages/settings.dart';
+import 'package:bloodpressurelog/domain/lang/app_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:quick_actions/quick_actions.dart';
 
@@ -52,17 +53,17 @@ class _QuickActionsManagerState extends State<QuickActionsManager> {
 
       if (shortcutType == 'action_add_measurement') {
         Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (context) => const AddRecord()));
+            MaterialPageRoute(builder: (context) => const AddRecordPage()));
       } else if (shortcutType == 'action_history') {
         BottomBar.currentIndex = 1;
 
         Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (context) => const History()));
+            MaterialPageRoute(builder: (context) => const HistoryPage()));
       } else if (shortcutType == 'action_settings') {
         BottomBar.currentIndex = 3;
 
         Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (context) => const History()));
+            MaterialPageRoute(builder: (context) => const SettingsPage()));
       }
     });
   }

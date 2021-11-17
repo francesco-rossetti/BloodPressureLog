@@ -1,5 +1,5 @@
 import 'package:bloodpressurelog/constants.dart';
-import 'package:bloodpressurelog/utils/app_localization.dart';
+import 'package:bloodpressurelog/domain/lang/app_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
@@ -18,37 +18,43 @@ class _PressureLevelBarState extends State<PressureLevelBar> {
   static String statusLabel = "regular";
   static int selectedIndex = 1;
 
-  calculateLevel() {
-    setState(() {
-      if (widget.sysRecord < 90 && widget.diaRecord < 60) {
-        selectedIndex = 0;
-        statusLabel = "hypotension";
-      } else if ((widget.sysRecord >= 90 && widget.sysRecord < 120) &&
-          (widget.diaRecord >= 60 && widget.diaRecord < 80)) {
+  void calculatePressureLevel() {
+    statusLabel = calculateLevel(widget.sysRecord, widget.diaRecord);
+
+    switch (statusLabel) {
+      case "low":
         selectedIndex = 1;
-        statusLabel = "regular";
-      } else if ((widget.sysRecord >= 120 && widget.sysRecord <= 130) &&
-          (widget.diaRecord < 80)) {
+        break;
+
+      case "regular":
         selectedIndex = 2;
-        statusLabel = "elevated";
-      } else if ((widget.sysRecord > 130 && widget.sysRecord <= 140) &&
-          (widget.diaRecord >= 80 && widget.diaRecord <= 90)) {
+        break;
+
+      case "elevated":
         selectedIndex = 3;
-        statusLabel = "hypertensionstage1";
-      } else if ((widget.sysRecord > 140 && widget.sysRecord <= 180) &&
-          (widget.diaRecord > 90 && widget.diaRecord <= 120)) {
+        break;
+
+      case "hypertensionstage1":
         selectedIndex = 4;
-        statusLabel = "hypertensionstage2";
-      } else if ((widget.sysRecord > 180) && widget.diaRecord > 120) {
+        break;
+
+      case "hypertensionstage2":
         selectedIndex = 5;
-        statusLabel = "hypertensivecrisis";
-      }
-    });
+        break;
+
+      case "hypertensivecrisis":
+        selectedIndex = 6;
+        break;
+
+      default:
+        selectedIndex = 0;
+        break;
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    calculateLevel();
+    calculatePressureLevel();
     return Column(children: [
       Center(
           child: Text(AppLocalizations.of(context)!.translate(statusLabel)!,
@@ -56,12 +62,11 @@ class _PressureLevelBarState extends State<PressureLevelBar> {
                   const TextStyle(fontWeight: FontWeight.bold, fontSize: 18))),
       const SizedBox(height: 5),
       StepProgressIndicator(
-          totalSteps: 6,
+          totalSteps: 7,
           padding: 0,
           size: 40,
-          currentStep: 2,
+          currentStep: 3,
           selectedColor: Colors.transparent,
-          // ignore: missing_return
           customStep: (index, color, __) {
             if (index == selectedIndex) {
               return Container(
@@ -72,25 +77,24 @@ class _PressureLevelBarState extends State<PressureLevelBar> {
                   ));
             }
 
-            return Container();
+            return Container(color: color);
           },
-          // ignore: missing_return
           customColor: (index) {
             switch (index) {
-              case 0:
-                return kHypotensionColor;
               case 1:
-                return kRegularColor;
+                return kLowColor;
               case 2:
-                return kElevatedColor;
+                return kRegularColor;
               case 3:
-                return kHypertension1Color;
+                return kElevatedColor;
               case 4:
-                return kHypertension2Color;
+                return kHypertension1Color;
               case 5:
+                return kHypertension2Color;
+              case 6:
                 return kHypertensionCrisisColor;
               default:
-                return kRegularColor;
+                return kNDColor;
             }
           })
     ]);

@@ -1,8 +1,8 @@
-import 'package:bloodpressurelog/add_record.dart';
-import 'package:bloodpressurelog/history.dart';
-import 'package:bloodpressurelog/home.dart';
-import 'package:bloodpressurelog/settings.dart';
-import 'package:bloodpressurelog/utils/app_localization.dart';
+import 'package:bloodpressurelog/domain/lang/app_localization.dart';
+import 'package:bloodpressurelog/pages/add_record.dart';
+import 'package:bloodpressurelog/pages/history.dart';
+import 'package:bloodpressurelog/pages/home.dart';
+import 'package:bloodpressurelog/pages/settings.dart';
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -58,17 +58,17 @@ class _BottomBarState extends State<BottomBar> {
 
             case 1:
               Navigator.of(context).pushReplacement(MaterialPageRoute(
-                  builder: (BuildContext context) => const History()));
+                  builder: (BuildContext context) => const HistoryPage()));
               break;
 
             case 2:
               Navigator.of(context).pushReplacement(MaterialPageRoute(
-                  builder: (BuildContext context) => const AddRecord()));
+                  builder: (BuildContext context) => const AddRecordPage()));
               break;
 
             case 3:
               Navigator.of(context).pushReplacement(MaterialPageRoute(
-                  builder: (BuildContext context) => const Settings()));
+                  builder: (BuildContext context) => const SettingsPage()));
               break;
           }
         }

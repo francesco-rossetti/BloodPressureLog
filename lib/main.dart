@@ -1,12 +1,12 @@
-import 'dart:io';
-
-import 'package:admob_flutter/admob_flutter.dart';
 import 'package:bloodpressurelog/components/on_boarding.dart';
 import 'package:bloodpressurelog/components/quick_actions_manager.dart';
-import 'package:bloodpressurelog/home.dart';
-import 'package:bloodpressurelog/utils/app_localization.dart';
+import 'package:bloodpressurelog/domain/lang/app_localization.dart';
+import 'package:bloodpressurelog/domain/providers/measurement_provider.dart';
+import 'package:bloodpressurelog/pages/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:provider/provider.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 Widget home = const IntroScreen(isReplay: false);
@@ -27,11 +27,11 @@ void main() async {
 
   await checkFirstSeen();
 
-  Admob.initialize();
+  //Admob.initialize();
 
-  if (Platform.isIOS) await Admob.requestTrackingAuthorization();
+  //if (Platform.isIOS) await Admob.requestTrackingAuthorization();
 
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 Locale localeCallback(locale, supportedLocales) {
@@ -46,31 +46,38 @@ Locale localeCallback(locale, supportedLocales) {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  final List<ChangeNotifierProvider> providers = [
+    ChangeNotifierProvider<MeasurementProvider>(
+        create: (BuildContext context) => MeasurementProvider())
+  ];
+
+  MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Blood Pressure Diary',
-      theme: ThemeData(
-        brightness: Brightness.light,
-        fontFamily: "Rubik",
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      darkTheme: ThemeData(
-        brightness: Brightness.dark,
-        fontFamily: "Rubik",
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      supportedLocales: const [Locale('en', 'US'), Locale('it', 'IT')],
-      localizationsDelegates: const [
-        AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate
-      ],
-      localeResolutionCallback: localeCallback,
-      home: QuickActionsManager(child: home),
-    );
+    return MultiProvider(
+        providers: providers,
+        child: MaterialApp(
+          title: 'Blood Pressure Diary',
+          theme: ThemeData(
+            brightness: Brightness.light,
+            visualDensity: VisualDensity.adaptivePlatformDensity,
+            fontFamily: GoogleFonts.rubik().fontFamily,
+          ),
+          darkTheme: ThemeData(
+            brightness: Brightness.dark,
+            fontFamily: "Rubik",
+            visualDensity: VisualDensity.adaptivePlatformDensity,
+          ),
+          supportedLocales: const [Locale('en', 'US'), Locale('it', 'IT')],
+          localizationsDelegates: const [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate
+          ],
+          localeResolutionCallback: localeCallback,
+          home: QuickActionsManager(child: home),
+        ));
   }
 }

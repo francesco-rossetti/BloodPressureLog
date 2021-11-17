@@ -1,5 +1,5 @@
 import 'package:bloodpressurelog/components/bottom_bar.dart';
-import 'package:bloodpressurelog/utils/app_localization.dart';
+import 'package:bloodpressurelog/domain/lang/app_localization.dart';
 import 'package:flutter/material.dart';
 
 class Page extends StatefulWidget {

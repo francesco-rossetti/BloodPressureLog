@@ -1,4 +1,4 @@
-import 'package:bloodpressurelog/utils/app_localization.dart';
+import 'package:bloodpressurelog/domain/lang/app_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
@@ -10,13 +10,14 @@ class DiaCircularPercentageIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var v = ((value / 200) * 10).round();
+    var v = ((value / 200) * 100).round();
 
     return CircularStepProgressIndicator(
-        totalSteps: 10,
+        totalSteps: 100,
         currentStep: v,
         width: 100,
-        roundedCap: (_, isSelected) => isSelected,
+        roundedCap: (_, __) => true,
+        selectedColor: Colors.redAccent,
         child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,

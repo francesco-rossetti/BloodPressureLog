@@ -1,9 +1,9 @@
 import 'package:bloodpressurelog/constants.dart';
-import 'package:bloodpressurelog/utils/app_localization.dart';
+import 'package:bloodpressurelog/domain/lang/app_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:intro_slider/intro_slider.dart';
 import 'package:intro_slider/slide_object.dart';
-import 'package:bloodpressurelog/home.dart';
+import 'package:bloodpressurelog/pages/home.dart';
 
 class IntroScreen extends StatefulWidget {
   final bool isReplay;
