@@ -2,8 +2,7 @@
   InfoPlist.strings
   Runner
 
-  Created by Francesco Rossetti on 20/11/20.
+  Created by Francesco Rossetti on 19/11/21.
   
 */
-
 CFBundleDisplayName = "Blood Pressure Log";

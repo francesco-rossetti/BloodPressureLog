@@ -48,7 +48,8 @@
 
     "selectDateTime": "Seleziona Data e Ora",
 
-    "hypotension": "Ipotensione",
+    "nd": "Non Determinata",
+    "low": "Bassa",
     "regular": "Regolare",
     "elevated": "Elevata",
     "hypertensionstage1": "Ipertensione di primo stadio",
@@ -63,6 +64,7 @@
     "instruction": "Come funziona l'app",
     "rateApp": "Ti piace l'app? Valutaci 5 stelle",
     "myApp": "Le nostre app",
+    "sources": "Fonti",
 
     "createdBy": "Creato Da: ",
     "version": "Versione ",
