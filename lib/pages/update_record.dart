@@ -1,6 +1,7 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:bloodpressurelog/components/ad_widget.dart';
 import 'package:bloodpressurelog/components/page_sample.dart' as components;
 import 'package:bloodpressurelog/components/pressure_level_bar.dart';
 import 'package:bloodpressurelog/constants.dart';
@@ -9,6 +10,7 @@ import 'package:bloodpressurelog/domain/lang/app_localization.dart';
 import 'package:bloodpressurelog/domain/providers/measurement_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:numberpicker/numberpicker.dart';
 import 'package:provider/provider.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
@@ -23,6 +25,7 @@ class UpdateRecordPage extends StatefulWidget {
 }
 
 class _UpdateRecordPageState extends State<UpdateRecordPage> {
+  InterstitialAd? interstitialAd;
   final TextEditingController noteController = TextEditingController();
   final TextEditingController oxygenationController = TextEditingController();
   final RoundedLoadingButtonController _btnController =
@@ -34,6 +37,7 @@ class _UpdateRecordPageState extends State<UpdateRecordPage> {
     return ListView(
         padding: const EdgeInsets.symmetric(horizontal: 5.0),
         children: [
+          ADWidget(banner: kbanner),
           const SizedBox(height: 20),
           PressureLevelBar(sysRecord: sysRecord, diaRecord: diaRecord),
           const SizedBox(height: 10),
@@ -182,9 +186,9 @@ class _UpdateRecordPageState extends State<UpdateRecordPage> {
                     AwesomeDialog(
                       context: context,
                       desc: AppLocalizations.of(context)!
-                          .translate("updaateConfirmation"),
+                          .translate("updateConfirmation"),
                       title: "",
-                      //btnOkOnPress: () => showInterstitialAD(),
+                      btnOkOnPress: () => showInterstitialAD(),
                     ).show();
 
                     await Future.delayed(const Duration(seconds: 3));
@@ -225,6 +229,16 @@ class _UpdateRecordPageState extends State<UpdateRecordPage> {
     }
   }
 
+  showInterstitialAD() async {
+    if (interstitialAd != null) {
+      interstitialAd!.show();
+    } else {
+      setState(() {
+        _btnController.reset();
+      });
+    }
+  }
+
   @override
   void initState() {
     super.initState();
@@ -239,16 +253,27 @@ class _UpdateRecordPageState extends State<UpdateRecordPage> {
             ? widget.measurement!.oxygenationMesurement.toString()
             : "";
 
-/*     interstitialAd = AdmobInterstitial(
-      adUnitId: kInterstitialID,
-      listener: (AdmobAdEvent event, Map<String, dynamic>? args) {
-        if (event == AdmobAdEvent.closed) {
-          Navigator.of(context).pop();
-        }
-      },
-    );
-
-    interstitialAd!.load(); */
+    InterstitialAd.load(
+        adUnitId: kInterstitialID,
+        request: const AdRequest(),
+        adLoadCallback: (InterstitialAdLoadCallback(
+          onAdLoaded: (ad) {
+            interstitialAd = ad;
+            interstitialAd!.fullScreenContentCallback =
+                FullScreenContentCallback(
+              onAdDismissedFullScreenContent: (InterstitialAd ad) {
+                Navigator.of(context).pop();
+                ad.dispose();
+              },
+              onAdFailedToShowFullScreenContent:
+                  (InterstitialAd ad, AdError error) {
+                Navigator.of(context).pop();
+                ad.dispose();
+              },
+            );
+          },
+          onAdFailedToLoad: (error) => interstitialAd = null,
+        )));
   }
 
   @override

@@ -1,3 +1,4 @@
+import 'package:bloodpressurelog/components/ad_widget.dart';
 import 'package:bloodpressurelog/components/on_boarding.dart';
 import 'package:bloodpressurelog/components/page_sample.dart' as components;
 import 'package:bloodpressurelog/constants.dart';
@@ -97,6 +98,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     style: const TextStyle(fontSize: 20)),
               ))),
       const SizedBox(height: 20),
+      ADWidget(banner: kLargeBanner),
     ]);
   }
 

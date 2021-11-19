@@ -1,4 +1,5 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:bloodpressurelog/components/ad_widget.dart';
 import 'package:bloodpressurelog/components/page_sample.dart' as components;
 import 'package:bloodpressurelog/components/pressure_level_bar.dart';
 import 'package:bloodpressurelog/constants.dart';
@@ -7,6 +8,7 @@ import 'package:bloodpressurelog/domain/lang/app_localization.dart';
 import 'package:bloodpressurelog/domain/providers/measurement_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:numberpicker/numberpicker.dart';
 import 'package:provider/provider.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
@@ -19,6 +21,8 @@ class AddRecordPage extends StatefulWidget {
 }
 
 class _AddRecordPageState extends State<AddRecordPage> {
+  InterstitialAd? interstitialAd;
+
   final TextEditingController noteController = TextEditingController();
   final TextEditingController oxygenationController = TextEditingController();
   final RoundedLoadingButtonController _btnController =
@@ -30,6 +34,7 @@ class _AddRecordPageState extends State<AddRecordPage> {
     return ListView(
         padding: const EdgeInsets.symmetric(horizontal: 5.0),
         children: [
+          ADWidget(banner: kbanner),
           const SizedBox(height: 20),
           PressureLevelBar(sysRecord: sysRecord, diaRecord: diaRecord),
           const SizedBox(height: 10),
@@ -182,7 +187,7 @@ class _AddRecordPageState extends State<AddRecordPage> {
                       desc: AppLocalizations.of(context)!
                           .translate("insertConfirmation"),
                       title: "",
-                      //btnOkOnPress: () => showInterstitialAD(),
+                      btnOkOnPress: () => showInterstitialAD(),
                     ).show();
 
                     await Future.delayed(const Duration(seconds: 3));
@@ -220,6 +225,41 @@ class _AddRecordPageState extends State<AddRecordPage> {
   void setState(fn) {
     if (mounted) {
       super.setState(fn);
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    InterstitialAd.load(
+        adUnitId: kInterstitialID,
+        request: const AdRequest(),
+        adLoadCallback: (InterstitialAdLoadCallback(
+          onAdLoaded: (ad) {
+            interstitialAd = ad;
+            interstitialAd!.fullScreenContentCallback =
+                FullScreenContentCallback(
+              onAdDismissedFullScreenContent: (InterstitialAd ad) {
+                ad.dispose();
+              },
+              onAdFailedToShowFullScreenContent:
+                  (InterstitialAd ad, AdError error) {
+                ad.dispose();
+              },
+            );
+          },
+          onAdFailedToLoad: (error) => interstitialAd = null,
+        )));
+  }
+
+  showInterstitialAD() async {
+    if (interstitialAd != null) {
+      interstitialAd!.show();
+    } else {
+      setState(() {
+        _btnController.reset();
+      });
     }
   }
 

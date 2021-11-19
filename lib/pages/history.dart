@@ -1,3 +1,4 @@
+import 'package:bloodpressurelog/components/ad_widget.dart';
 import 'package:bloodpressurelog/components/empty_list.dart';
 import 'package:bloodpressurelog/components/filter_measurements.dart';
 import 'package:bloodpressurelog/components/page_sample.dart' as components;
@@ -20,6 +21,7 @@ class HistoryPage extends StatefulWidget {
 class _HistoryPageState extends State<HistoryPage> {
   createBody() {
     return Column(children: [
+      ADWidget(banner: kbanner),
       const FilterMeasurements(),
       const SizedBox(height: 5),
       Consumer<MeasurementProvider>(builder: (context, measurementProvider, _) {

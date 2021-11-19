@@ -1,6 +1,7 @@
 import 'package:bloodpressurelog/domain/database/models/measurement.dart';
 import 'package:bloodpressurelog/domain/lang/app_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:intl/intl.dart';
 
 const String kBannerID = "ca-app-pub-3318650813130043/5546963278";
@@ -10,11 +11,19 @@ const String kDevURL =
 const String kSourcesURL =
     "https://www.forbes.com/health/healthy-aging/normal-blood-pressure-by-age-chart/";
 
-/* AdmobBanner kbanner =
-    AdmobBanner(adUnitId: kBannerID, adSize: AdmobBannerSize.BANNER);
+BannerAd kbanner = BannerAd(
+  adUnitId: kBannerID,
+  size: AdSize.banner,
+  request: const AdRequest(),
+  listener: const BannerAdListener(),
+);
 
-AdmobBanner kLargeBanner =
-    AdmobBanner(adUnitId: kBannerID, adSize: AdmobBannerSize.MEDIUM_RECTANGLE); */
+BannerAd kLargeBanner = BannerAd(
+  adUnitId: kBannerID,
+  size: AdSize.mediumRectangle,
+  request: const AdRequest(),
+  listener: const BannerAdListener(),
+);
 
 const kPrimaryColor = Color(0xFF1976D2);
 const kSecondaryColor = Color(0xFFFF9800);

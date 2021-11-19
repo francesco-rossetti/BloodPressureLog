@@ -1,3 +1,4 @@
+import 'package:bloodpressurelog/components/ad_widget.dart';
 import 'package:bloodpressurelog/components/bpm_circular_percentage_indicator.dart';
 import 'package:bloodpressurelog/components/dia_circular_percentage_indicator.dart';
 import 'package:bloodpressurelog/components/empty_list.dart';
@@ -22,6 +23,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   createBody() {
     return ListView(children: [
+      ADWidget(banner: kbanner),
       const FilterMeasurements(),
       const SizedBox(height: 5),
       Consumer<MeasurementProvider>(builder: (context, measurementProvider, _) {

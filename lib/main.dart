@@ -8,6 +8,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 Widget home = const IntroScreen(isReplay: false);
 
@@ -24,12 +25,9 @@ Future checkFirstSeen() async {
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  MobileAds.instance.initialize();
 
   await checkFirstSeen();
-
-  //Admob.initialize();
-
-  //if (Platform.isIOS) await Admob.requestTrackingAuthorization();
 
   runApp(MyApp());
 }
