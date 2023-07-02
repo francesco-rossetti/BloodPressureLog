@@ -1,8 +1,56 @@
 import 'package:bloodpressurelog/domain/database/models/measurement.dart';
 import 'package:bloodpressurelog/domain/lang/app_localization.dart';
-import 'package:charts_flutter/flutter.dart' as charts;
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
+class LineAreaGraph extends StatefulWidget {
+  const LineAreaGraph(
+      {Key? key, required this.measurements, required this.animate})
+      : super(key: key);
+
+  final List<Measurement> measurements;
+  final bool animate;
+
+  @override
+  State<LineAreaGraph> createState() => _LineAreaGraphState();
+}
+
+class _LineAreaGraphState extends State<LineAreaGraph> {
+  @override
+  Widget build(BuildContext context) {
+    return AspectRatio(
+      aspectRatio: 2,
+      child: LineChart(
+        LineChartData(
+          lineBarsData: [
+            LineChartBarData(
+              spots: widget.measurements
+                  .map((point) => FlSpot(point.idMeasurement!.toDouble(),
+                      point.sysMeasurement!.toDouble()))
+                  .toList(),
+              isCurved: true,
+            ),
+            LineChartBarData(
+              spots: widget.measurements
+                  .map((point) => FlSpot(point.idMeasurement!.toDouble(),
+                      point.diaMeasurement!.toDouble()))
+                  .toList(),
+              isCurved: true,
+            ),
+            LineChartBarData(
+              spots: widget.measurements
+                  .map((point) => FlSpot(point.idMeasurement!.toDouble(),
+                      point.bpmMeasurement!.toDouble()))
+                  .toList(),
+              isCurved: true,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+/*
 class LineAreaGraph extends StatelessWidget {
   final List<Measurement> measurements;
   final bool animate;
@@ -66,3 +114,4 @@ class LineAreaGraph extends StatelessWidget {
     ];
   }
 }
+*/

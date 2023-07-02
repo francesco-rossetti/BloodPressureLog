@@ -1,6 +1,5 @@
 // ignore_for_file: must_be_immutable
 
-import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:bloodpressurelog/components/ad_widget.dart';
 import 'package:bloodpressurelog/components/page_sample.dart' as components;
 import 'package:bloodpressurelog/components/pressure_level_bar.dart';
@@ -9,7 +8,7 @@ import 'package:bloodpressurelog/domain/database/models/measurement.dart';
 import 'package:bloodpressurelog/domain/lang/app_localization.dart';
 import 'package:bloodpressurelog/domain/providers/measurement_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:flutter_datetime_picker_plus/flutter_datetime_picker_plus.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:numberpicker/numberpicker.dart';
 import 'package:provider/provider.dart';
@@ -21,10 +20,10 @@ class UpdateRecordPage extends StatefulWidget {
   UpdateRecordPage({Key? key, this.measurement}) : super(key: key);
 
   @override
-  _UpdateRecordPageState createState() => _UpdateRecordPageState();
+  UpdateRecordPageState createState() => UpdateRecordPageState();
 }
 
-class _UpdateRecordPageState extends State<UpdateRecordPage> {
+class UpdateRecordPageState extends State<UpdateRecordPage> {
   InterstitialAd? interstitialAd;
   final TextEditingController noteController = TextEditingController();
   final TextEditingController oxygenationController = TextEditingController();
@@ -158,8 +157,6 @@ class _UpdateRecordPageState extends State<UpdateRecordPage> {
           ),
           const SizedBox(height: 20),
           RoundedLoadingButton(
-              child: Text(AppLocalizations.of(context)!.translate("confirm")!,
-                  style: const TextStyle(color: Colors.white)),
               controller: _btnController,
               onPressed: () async {
                 try {
@@ -183,13 +180,13 @@ class _UpdateRecordPageState extends State<UpdateRecordPage> {
                       _btnController.success();
                     });
 
-                    AwesomeDialog(
+                    /*AwesomeDialog(
                       context: context,
                       desc: AppLocalizations.of(context)!
                           .translate("updateConfirmation"),
                       title: "",
                       btnOkOnPress: () => showInterstitialAD(),
-                    ).show();
+                    ).show();*/
 
                     await Future.delayed(const Duration(seconds: 3));
 
@@ -218,7 +215,9 @@ class _UpdateRecordPageState extends State<UpdateRecordPage> {
                     _btnController.reset();
                   });
                 }
-              }),
+              },
+              child: Text(AppLocalizations.of(context)!.translate("confirm")!,
+                  style: const TextStyle(color: Colors.white))),
         ]);
   }
 

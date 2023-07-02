@@ -94,19 +94,15 @@ class _HistoryPageState extends State<HistoryPage> {
                         leading: Container(
                           width: 60,
                           height: 60,
-                          child: Center(
-                              child: Text(
-                                  measurementProvider
-                                          .measurements![index].sysMeasurement
-                                          .toString() +
-                                      "\n" +
-                                      measurementProvider
-                                          .measurements![index].diaMeasurement
-                                          .toString(),
-                                  textAlign: TextAlign.center,
-                                  style: const TextStyle(color: Colors.white))),
                           decoration: BoxDecoration(
                               shape: BoxShape.circle, color: color),
+                          child: Center(
+                              child: Text(
+                                  "${measurementProvider
+                                          .measurements![index].sysMeasurement}\n${measurementProvider
+                                          .measurements![index].diaMeasurement}",
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(color: Colors.white))),
                         ),
                         title: Text(
                             AppLocalizations.of(context)!.translate(level)!,
@@ -115,29 +111,17 @@ class _HistoryPageState extends State<HistoryPage> {
                         subtitle: measurementProvider.measurements![index]
                                     .oxygenationMesurement !=
                                 null
-                            ? Text(langFormatDate(
+                            ? Text("${langFormatDate(
                                     context,
                                     measurementProvider.measurements![index]
-                                        .dateTimeMeasurement!) +
-                                " | " +
-                                measurementProvider
-                                    .measurements![index].bpmMeasurement
-                                    .toString() +
-                                "bpm" +
-                                " | " +
-                                measurementProvider
-                                    .measurements![index].oxygenationMesurement
-                                    .toString() +
-                                "%")
-                            : Text(langFormatDate(
+                                        .dateTimeMeasurement!)} | ${measurementProvider
+                                    .measurements![index].bpmMeasurement}bpm | ${measurementProvider
+                                    .measurements![index].oxygenationMesurement}%")
+                            : Text("${langFormatDate(
                                     context,
                                     measurementProvider.measurements![index]
-                                        .dateTimeMeasurement!) +
-                                " | " +
-                                measurementProvider
-                                    .measurements![index].bpmMeasurement
-                                    .toString() +
-                                "bpm"),
+                                        .dateTimeMeasurement!)} | ${measurementProvider
+                                    .measurements![index].bpmMeasurement}bpm"),
                       )));
                 }));
       })
@@ -174,7 +158,7 @@ class _HistoryPageState extends State<HistoryPage> {
 
               String? path =
                   await PDFProvider.pdfMeasurementPeriod(context, action);
-              Share.shareFiles([path!],
+              Share.shareXFiles([XFile(path!)],
                   subject: AppLocalizations.of(context)!
                       .translate("exportMeasurements"));
             },

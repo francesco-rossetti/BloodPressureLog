@@ -13,10 +13,10 @@ class EmptyListPlaceHolder extends StatefulWidget {
       : super(key: key);
 
   @override
-  _EmptyListPlaceHolderState createState() => _EmptyListPlaceHolderState();
+  EmptyListPlaceHolderState createState() => EmptyListPlaceHolderState();
 }
 
-class _EmptyListPlaceHolderState extends State<EmptyListPlaceHolder> {
+class EmptyListPlaceHolderState extends State<EmptyListPlaceHolder> {
   @override
   Widget build(BuildContext context) {
     return Align(

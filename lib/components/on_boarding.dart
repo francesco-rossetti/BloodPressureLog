@@ -2,7 +2,6 @@ import 'package:bloodpressurelog/constants.dart';
 import 'package:bloodpressurelog/domain/lang/app_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:intro_slider/intro_slider.dart';
-import 'package:intro_slider/slide_object.dart';
 import 'package:bloodpressurelog/pages/home.dart';
 
 class IntroScreen extends StatefulWidget {
@@ -11,11 +10,11 @@ class IntroScreen extends StatefulWidget {
   const IntroScreen({Key? key, required this.isReplay}) : super(key: key);
 
   @override
-  _IntroScreenState createState() => _IntroScreenState();
+  IntroScreenState createState() => IntroScreenState();
 }
 
-class _IntroScreenState extends State<IntroScreen> {
-  List<Slide> slides = [];
+class IntroScreenState extends State<IntroScreen> {
+  List<ContentConfig> slides = [];
 
   @override
   void initState() {
@@ -34,7 +33,7 @@ class _IntroScreenState extends State<IntroScreen> {
   @override
   Widget build(BuildContext context) {
     slides.add(
-      Slide(
+      ContentConfig(
         title: AppLocalizations.of(context)!.translate("appName")!,
         description:
             AppLocalizations.of(context)!.translate("onBoarding1Detail"),
@@ -43,7 +42,7 @@ class _IntroScreenState extends State<IntroScreen> {
       ),
     );
     slides.add(
-      Slide(
+      ContentConfig(
         title: AppLocalizations.of(context)!.translate("appName"),
         description:
             AppLocalizations.of(context)!.translate("onBoarding2Detail"),
@@ -52,7 +51,7 @@ class _IntroScreenState extends State<IntroScreen> {
       ),
     );
     slides.add(
-      Slide(
+      ContentConfig(
         title: AppLocalizations.of(context)!.translate("appName"),
         description:
             AppLocalizations.of(context)!.translate("onBoarding3Detail"),
@@ -62,7 +61,15 @@ class _IntroScreenState extends State<IntroScreen> {
     );
 
     return IntroSlider(
-      slides: slides,
+      listContentConfig: slides,
+      skipButtonStyle: ButtonStyle(
+          foregroundColor: MaterialStateProperty.all<Color>(Colors.white)),
+      nextButtonStyle: ButtonStyle(
+          foregroundColor: MaterialStateProperty.all<Color>(Colors.white)),
+      doneButtonStyle: ButtonStyle(
+          foregroundColor: MaterialStateProperty.all<Color>(Colors.white)),
+      prevButtonStyle: ButtonStyle(
+          foregroundColor: MaterialStateProperty.all<Color>(Colors.white)),
       onDonePress: onDonePress,
       onSkipPress: onDonePress,
     );

@@ -14,10 +14,10 @@ class SettingsPage extends StatefulWidget {
   const SettingsPage({Key? key}) : super(key: key);
 
   @override
-  _SettingsPageState createState() => _SettingsPageState();
+  SettingsPageState createState() => SettingsPageState();
 }
 
-class _SettingsPageState extends State<SettingsPage> {
+class SettingsPageState extends State<SettingsPage> {
   createBody() {
     return ListView(children: [
       const SizedBox(height: 20),
@@ -29,7 +29,7 @@ class _SettingsPageState extends State<SettingsPage> {
               child: ElevatedButton(
                 onPressed: () async {
                   var path = await JSONProvider.exportMeasurements();
-                  Share.shareFiles([path],
+                  Share.shareXFiles([XFile(path)],
                       subject: AppLocalizations.of(context)!
                           .translate("importMeasurements")!);
                 },
@@ -79,7 +79,7 @@ class _SettingsPageState extends State<SettingsPage> {
               height: 40,
               child: ElevatedButton(
                 onPressed: () async {
-                  await launch(kSourcesURL);
+                  await launchUrl(Uri.parse(kSourcesURL));
                 },
                 child: Text(AppLocalizations.of(context)!.translate("sources")!,
                     style: const TextStyle(fontSize: 20)),
@@ -92,7 +92,7 @@ class _SettingsPageState extends State<SettingsPage> {
               height: 40,
               child: ElevatedButton(
                 onPressed: () async {
-                  await launch(kDevURL);
+                  await launchUrl(Uri.parse(kDevURL));
                 },
                 child: Text(AppLocalizations.of(context)!.translate("myApp")!,
                     style: const TextStyle(fontSize: 20)),

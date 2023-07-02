@@ -14,9 +14,9 @@ Widget home = const IntroScreen(isReplay: false);
 
 Future checkFirstSeen() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
-  bool _seen = (prefs.getBool('BloodPressureLog') ?? false);
+  bool seen = (prefs.getBool('BloodPressureLog') ?? false);
 
-  if (_seen) {
+  if (seen) {
     home = const HomePage();
   } else {
     await prefs.setBool('BloodPressureLog', true);

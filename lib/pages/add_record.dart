@@ -1,4 +1,3 @@
-import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:bloodpressurelog/components/ad_widget.dart';
 import 'package:bloodpressurelog/components/page_sample.dart' as components;
 import 'package:bloodpressurelog/components/pressure_level_bar.dart';
@@ -7,7 +6,7 @@ import 'package:bloodpressurelog/domain/database/models/measurement.dart';
 import 'package:bloodpressurelog/domain/lang/app_localization.dart';
 import 'package:bloodpressurelog/domain/providers/measurement_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:flutter_datetime_picker_plus/flutter_datetime_picker_plus.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:numberpicker/numberpicker.dart';
 import 'package:provider/provider.dart';
@@ -17,10 +16,10 @@ class AddRecordPage extends StatefulWidget {
   const AddRecordPage({Key? key}) : super(key: key);
 
   @override
-  _AddRecordPageState createState() => _AddRecordPageState();
+  AddRecordPageState createState() => AddRecordPageState();
 }
 
-class _AddRecordPageState extends State<AddRecordPage> {
+class AddRecordPageState extends State<AddRecordPage> {
   InterstitialAd? interstitialAd;
 
   final TextEditingController noteController = TextEditingController();
@@ -156,8 +155,6 @@ class _AddRecordPageState extends State<AddRecordPage> {
           ),
           const SizedBox(height: 20),
           RoundedLoadingButton(
-              child: Text(AppLocalizations.of(context)!.translate("confirm")!,
-                  style: const TextStyle(color: Colors.white)),
               controller: _btnController,
               onPressed: () async {
                 try {
@@ -182,13 +179,13 @@ class _AddRecordPageState extends State<AddRecordPage> {
                       _btnController.success();
                     });
 
-                    AwesomeDialog(
+                    /*AwesomeDialog(
                       context: context,
                       desc: AppLocalizations.of(context)!
                           .translate("insertConfirmation"),
                       title: "",
                       btnOkOnPress: () => showInterstitialAD(),
-                    ).show();
+                    ).show();*/
 
                     await Future.delayed(const Duration(seconds: 3));
 
@@ -217,7 +214,9 @@ class _AddRecordPageState extends State<AddRecordPage> {
                     _btnController.reset();
                   });
                 }
-              }),
+              },
+              child: Text(AppLocalizations.of(context)!.translate("confirm")!,
+                  style: const TextStyle(color: Colors.white))),
         ]);
   }
 

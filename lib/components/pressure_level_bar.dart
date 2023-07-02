@@ -11,10 +11,10 @@ class PressureLevelBar extends StatefulWidget {
       : super(key: key);
 
   @override
-  _PressureLevelBarState createState() => _PressureLevelBarState();
+  PressureLevelBarState createState() => PressureLevelBarState();
 }
 
-class _PressureLevelBarState extends State<PressureLevelBar> {
+class PressureLevelBarState extends State<PressureLevelBar> {
   static String statusLabel = "regular";
   static int selectedIndex = 1;
 

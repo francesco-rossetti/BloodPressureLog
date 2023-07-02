@@ -8,10 +8,10 @@ class InfoPage extends StatefulWidget {
   const InfoPage({Key? key}) : super(key: key);
 
   @override
-  _InfoPageState createState() => _InfoPageState();
+  InfoPageState createState() => InfoPageState();
 }
 
-class _InfoPageState extends State<InfoPage> {
+class InfoPageState extends State<InfoPage> {
   createBody() {
     return ListView(
       children: <Widget>[
@@ -22,10 +22,10 @@ class _InfoPageState extends State<InfoPage> {
         InkWell(
             child: Center(
                 child: Text(
-                    AppLocalizations.of(context)!.translate("createdBy")! +
-                        "Francesco Rossetti",
+                    "${AppLocalizations.of(context)!.translate("createdBy")!}Francesco Rossetti",
                     style: const TextStyle(fontSize: 25))),
-            onTap: () => launch('https://github.com/francescorossetti')),
+            onTap: () =>
+                launchUrl(Uri.parse('https://github.com/francescorossetti'))),
         const SizedBox(height: 10),
         FutureBuilder(
             future: PackageInfo.fromPlatform(),
@@ -34,11 +34,7 @@ class _InfoPageState extends State<InfoPage> {
               if (snapshot.hasData) {
                 return Center(
                     child: Text(
-                        AppLocalizations.of(context)!.translate("version")! +
-                            ": " +
-                            snapshot.data!.version +
-                            "." +
-                            snapshot.data!.buildNumber,
+                        "${AppLocalizations.of(context)!.translate("version")!}: ${snapshot.data!.version}.${snapshot.data!.buildNumber}",
                         style: const TextStyle(fontSize: 20)));
               } else {
                 return Container();
@@ -49,16 +45,16 @@ class _InfoPageState extends State<InfoPage> {
           child: Center(
               child: Text(
                   AppLocalizations.of(context)!.translate("privacypolicy")!)),
-          onTap: () =>
-              launch('https://blood-pressure-log.flycricket.io/privacy.html'),
+          onTap: () => launchUrl(Uri.parse(
+              'https://blood-pressure-log.flycricket.io/privacy.html')),
         ),
         const SizedBox(height: 10),
         InkWell(
           child: Center(
               child: Text(
                   AppLocalizations.of(context)!.translate("termsofservice")!)),
-          onTap: () =>
-              launch('https://blood-pressure-log.flycricket.io/terms.html'),
+          onTap: () => launchUrl(
+              Uri.parse('https://blood-pressure-log.flycricket.io/terms.html')),
         ),
       ],
     );

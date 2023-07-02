@@ -40,24 +40,18 @@ class PDFProvider {
       switch (period) {
         case 0:
           periodName = "week";
-          date = langFormatDateOnly(
-                  context, DateTime.now().subtract(const Duration(days: 7))) +
-              " - " +
-              langFormatDateOnly(context, DateTime.now());
+          date =
+              "${langFormatDateOnly(context, DateTime.now().subtract(const Duration(days: 7)))} - ${langFormatDateOnly(context, DateTime.now())}";
           break;
         case 1:
           periodName = "month";
-          date = langFormatDateOnly(
-                  context, DateTime.now().subtract(const Duration(days: 30))) +
-              " - " +
-              langFormatDateOnly(context, DateTime.now());
+          date =
+              "${langFormatDateOnly(context, DateTime.now().subtract(const Duration(days: 30)))} - ${langFormatDateOnly(context, DateTime.now())}";
           break;
         case 2:
           periodName = "year";
-          date = langFormatDateOnly(
-                  context, DateTime.now().subtract(const Duration(days: 365))) +
-              " - " +
-              langFormatDateOnly(context, DateTime.now());
+          date =
+              "${langFormatDateOnly(context, DateTime.now().subtract(const Duration(days: 365)))} - ${langFormatDateOnly(context, DateTime.now())}";
           break;
         case 3:
           periodName = "all";
@@ -65,9 +59,8 @@ class PDFProvider {
           break;
       }
 
-      String moduleName = AppLocalizations.of(context)!.translate("appName")! +
-          " | " +
-          AppLocalizations.of(context)!.translate(periodName)!;
+      String moduleName =
+          "${AppLocalizations.of(context)!.translate("appName")!} | ${AppLocalizations.of(context)!.translate(periodName)!}";
 
       pdf.addPage(pw.MultiPage(
           orientation: pw.PageOrientation.landscape,
@@ -77,7 +70,7 @@ class PDFProvider {
                         style: pw.TextStyle(
                             fontSize: 25, fontWeight: pw.FontWeight.bold))),
                 pw.Text("\n\n\n"),
-                pw.Table.fromTextArray(context: c, data: <List<String>>[
+                pw.TableHelper.fromTextArray(context: c, data: <List<String>>[
                   <String>[
                     AppLocalizations.of(context)!.translate("dateMeasurement")!,
                     AppLocalizations.of(context)!.translate("sys")!,
@@ -93,7 +86,7 @@ class PDFProvider {
                         item.diaMeasurement.toString(),
                         item.bpmMeasurement.toString(),
                         item.oxygenationMesurement != null
-                            ? item.oxygenationMesurement.toString() + "%"
+                            ? "${item.oxygenationMesurement}%"
                             : "",
                         item.notesMeasurement!
                       ])
@@ -107,7 +100,8 @@ class PDFProvider {
       String dir = (await getPath())!.path;
       dir = "$dir/output";
 
-      String path = "$dir/$moduleName" "_" + DateTime.now().toString() + ".pdf";
+      String path =
+          "$dir/${moduleName}_${DateTime.now()}.pdf";
       File file = File(path);
 
       var dir2check = Directory(dir);
@@ -122,10 +116,8 @@ class PDFProvider {
       return path;
     } else {
       Fluttertoast.showToast(
-          msg: AppLocalizations.of(context)!.translate("noValuesDetected")! +
-              "\n" +
-              AppLocalizations.of(context)!
-                  .translate("noValuesDetectedDetail")!,
+          msg: "${AppLocalizations.of(context)!.translate("noValuesDetected")!}\n${AppLocalizations.of(context)!
+                  .translate("noValuesDetectedDetail")!}",
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.BOTTOM,
           timeInSecForIosWeb: 1,

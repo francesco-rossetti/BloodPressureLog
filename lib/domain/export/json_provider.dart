@@ -25,7 +25,7 @@ class JSONProvider {
     String dir = (await getPath())!.path;
     dir = "$dir/output";
 
-    String path = "$dir/export_" + DateTime.now().toString() + ".json";
+    String path = "$dir/export_${DateTime.now()}.json";
     File file = File(path);
 
     var dir2check = Directory(dir);

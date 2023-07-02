@@ -11,10 +11,10 @@ class QuickActionsManager extends StatefulWidget {
   const QuickActionsManager({Key? key, required this.child}) : super(key: key);
 
   @override
-  _QuickActionsManagerState createState() => _QuickActionsManagerState();
+  QuickActionsManagerState createState() => QuickActionsManagerState();
 }
 
-class _QuickActionsManagerState extends State<QuickActionsManager> {
+class QuickActionsManagerState extends State<QuickActionsManager> {
   final QuickActions quickActions = const QuickActions();
 
   @override

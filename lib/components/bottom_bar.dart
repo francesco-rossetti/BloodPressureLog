@@ -12,10 +12,10 @@ class BottomBar extends StatefulWidget {
   static int currentIndex = 0;
 
   @override
-  _BottomBarState createState() => _BottomBarState();
+  BottomBarState createState() => BottomBarState();
 }
 
-class _BottomBarState extends State<BottomBar> {
+class BottomBarState extends State<BottomBar> {
   @override
   Widget build(BuildContext context) {
     return BottomNavyBar(

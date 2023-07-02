@@ -7,10 +7,10 @@ class ADWidget extends StatefulWidget {
   const ADWidget({Key? key, this.banner}) : super(key: key);
 
   @override
-  _ADWidgetState createState() => _ADWidgetState();
+  ADWidgetState createState() => ADWidgetState();
 }
 
-class _ADWidgetState extends State<ADWidget> {
+class ADWidgetState extends State<ADWidget> {
   @override
   void initState() {
     widget.banner!.dispose();
@@ -23,10 +23,10 @@ class _ADWidgetState extends State<ADWidget> {
   Widget build(BuildContext context) {
     return StatefulBuilder(
       builder: (context, setState) => Container(
-        child: AdWidget(ad: widget.banner!),
         width: widget.banner!.size.width.toDouble(),
         height: widget.banner!.size.height.toDouble(),
         alignment: Alignment.center,
+        child: AdWidget(ad: widget.banner!),
       ),
     );
   }

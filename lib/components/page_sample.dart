@@ -17,10 +17,10 @@ class Page extends StatefulWidget {
       : super(key: key);
 
   @override
-  _PageState createState() => _PageState();
+  PageState createState() => PageState();
 }
 
-class _PageState extends State<Page> {
+class PageState extends State<Page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
